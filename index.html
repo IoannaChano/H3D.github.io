@@ -35,26 +35,7 @@
 
 <body>
 	<h1> Reproducibility of 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction'</h1>
-	<h2> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola, Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
-	<h2>Introduction</h2>
-		<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed approaches involve two categories: model-based and model-free.
-		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' aims to reconstruct 3-D head surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches. 
-		The way to do this is the addition of prior knowledge to the Implicit Differentiable Renderer (IDR) [2]. Furthermore, in order to include this knowledge a prior is trained using thousands of raw incomplete scans
-		to learn the Signed Distance Functions (SDF), which represent the head geometry [1]. This approach is the H3D-Net, which given only 3 input images it estimates the full 
-		head shape. In the following sections the employed method will be further analysed and then, the reproducibility results are going to be presented. 
-		</p>
-	<h2>Method</h2>
-		<p>As already mentioned H3D-Net is based on training a prior, namely training the already existing DeepSDF [1] network and using it to initialize the already existing IDR [2] to reduce the needed amount of inputs, leading to
-		the need of only 3 2-D images to get the whole 3-D head representation. Thus, H3D-Net is comprised of two steps: </p> 
-  		<h3> 1. Prior based on DeepSDF </h3>
-    			<p> Given a set of M scenes with associated raw 3D point clouds, we use the DeepSDF framework to learn a prior distribution of signed distance functions representing 3D
-        		heads, <b>bolted bolted</b> <i>italics italics</i> exampletext exampletext exampletext example</p>
-  		<h3> 2. Prior aided-IDR </h3>
-    			<p>Example text exampletext exampletext <b>bolted bolted</b> <i>italics italics</i> exampletext exampletext exampletext example</p>
-
- 	 <h2> References</h2>
-		<p>[1] Jeong Joon Park, Peter Florence, Julian Straub, Richard Newcombe, and Steven Lovegrove. Deepsdf: Learning continuous signed distance functions for shape representation.In CVPR, 2019
-		[2] Lior Yariv, Yoni Kasten, Dror Moran, Meirav Galun, Matan Atzmon, Basri Ronen, and Yaron Lipman. Multiview neural surface reconstruction by disentangling geometry and appearance. NeurIPS, 33, 2020. </p>
-
+	
+	
 </body>
 </html>
