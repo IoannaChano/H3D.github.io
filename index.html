@@ -6,6 +6,7 @@
 		body
 		{
             background-color: initial;
+            margin: 0 64px 0 64px;
 		}
 
 
@@ -13,14 +14,14 @@
         {   
             color: initial;
             font-family: Arial, Helvetica, sans-serif;
-            
-          
+            margin: 32px 0 32px 0;
         }
 
         h2
         {   
             color: initial;
             font-family: Arial, Helvetica, sans-serif;
+            margin-top: 50px;
         }
 
         h3
@@ -33,7 +34,13 @@
 		{   
         	color: initial;
             font-family: Arial, Helvetica, sans-serif;
+            text-align: justify;
         }
+		
+		.row
+		{
+		    margin: 32px 0 32px 0;
+		}
 		
 		.column
 		{
@@ -41,7 +48,9 @@
 			width: 33.33%;
 			padding: 5px;
 			box-sizing: border-box;
-			text-line: center;
+			text-align: center;
+			color: grey;
+			text-align: center;
 		}
 
 		.row::after
@@ -52,17 +61,24 @@
 			box-sizing: border-box;
 		}
 		
+		ul
+		{
+        	color: initial;
+            font-family: Arial, Helvetica, sans-serif;
+		}
+		
 		div.references
 		{
 			color: gray;
 		}
-		       
+		   
+		      
 	</style>
 </head>
 
 <body>
-	<h1> Reproducibility of 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction'</h1>
-	<h2> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola, Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
+	<h1 style="margin-bottom: 16px;"> Reproducibility of 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction'</h1>
+	<h2 style="margin-top: 16px; margin-bottom: 64px;"> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola, Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
 	<h2>Introduction</h2>
 		<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed approaches involve two categories: model-based and model-free.
 		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' aims to reconstruct 3-D head surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches. 
@@ -103,12 +119,15 @@
 		  		Figure.3 3D head discontinuous view
 		</div>
 		</div>
-		
-	As we can see the training data are characterized by: 
-	- non-continuouity of the meshes, with open spaces on the bottom of the heads
-	- the heads don't have hair 
-	- the heads don't have shoulders
-	These are some of the contributing factors for ... </p>
+	<p>As we can see the training data are characterized by:</p>
+	<ul>
+	    <li>non-continuouity of the meshes, with open spaces on the bottom of the heads</li>
+	    <li>the heads don't have hair</li>
+	    <li>the heads don't have shoulders</li>
+	</ul>
+	
+	<p>These are some of the contributing factors for ... </p>
+	
 	
 	<h3> Setting up Dependencies </h3>
 	<p>It is certain that setting up the github repository dependencies has been the most difficult part of the project leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
