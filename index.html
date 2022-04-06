@@ -47,13 +47,18 @@
 	<h1> Reproducibility of 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction'</h1>
 	<h2> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola, Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
 	<h2>Introduction</h2>
-		<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed approaches involve two categories: model-based and model-free.
+		<p> (WHAT IS H3D-Net)
+		 Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed approaches involve two categories: model-based and model-free.
 		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' aims to reconstruct 3-D head surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches. 
 		The way to do this is the addition of prior knowledge to the Implicit Differentiable Renderer (IDR) <a href="https://ioannachano.github.io/index.html#Lior">[2] </a>. Furthermore, in order to include this knowledge a prior is trained using thousands of raw incomplete scans
 		to learn the Signed Distance Functions (SDF), which represent the head geometry <a href="https://ioannachano.github.io/index.html#Jeong">[1]</a>. This approach is the H3D-Net, which given only 3 input images it estimates the full 
 		head shape. In the following sections the employed method will be further analysed and then, the reproducibility results are going to be presented. 
+		\newline 
+		(The Importance of Reproducing Someone's Work)
+		Getting into the process of reproducing the results of a published scientific work is a valuable thing because it offers deeper insights into the reasoning behind
+		the authors' choices in their model architecture and the actual strategy they used for implementation. 
 		</p>
-	<h2>Method</h2>
+	<h2>Method employed in H3D-Net</h2>
 		<p>As already mentioned H3D-Net is based on training a prior, namely training the already existing DeepSDF <a href="https://ioannachano.github.io/index.html#Jeong">[1]</a> network and using it to initialize the already existing IDR <a href="https://ioannachano.github.io/index.html#Lior">[2] </a> to reduce the needed amount of inputs, leading to
 		the need of only 3 2-D images to get the whole 3-D head representation. Thus, H3D-Net is comprised of two steps: </p> 
   		<h3> 1. Prior based on DeepSDF </h3>
@@ -61,7 +66,38 @@
         		heads, <b>bolted bolted</b> <i>italics italics</i> exampletext exampletext exampletext example</p>
   		<h3> 2. Prior aided-IDR </h3>
     			<p>Example text exampletext exampletext <b>bolted bolted</b> <i>italics italics</i> exampletext exampletext exampletext example</p>
+	
+	<h2> <b>bolted Reproduction bolted</b>  </h2> 
+	
+	<h2>1. Reproduction of <b>bolted DeepSDF bolted</b> prior </h2> 
+	
+	<h3> Training Dataset</h3>
+	<p> The original dataset used in the paper wasn't available for public use - due to confientiality issues, since the authors are currently collaborating with a company which owns the original data- alternatively, we produced thousands of 3D head samples using the <b>boltedFLAMEbolted</b> 3D morphable model of heads <a href="https://ioannachano.github.io/index.html#FLAME">[3].
+	More specifically, we produced almost 10000 3D head samples, whose data type is '.obj'. One of these 10000 samples can be seen in the following figure.  
+		
+		
+	As we can see the training data are characterized by: 
+	- non-continuouity of the meshes, with open spaces on the bottom of the heads
+	- the heads don't have hair 
+	- the heads don't have shoulders
+	These are some of the contributing factors for ... </p>
+	
+	<h3> Setting up Dependencies </h3>
+	<p>It is certain that setting up the github repository dependencies has been the most difficult part of the project leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
+	 Different package versions as well as operating system in Linux created major obstacles resulting in ...
+	on the way</p>
+	
+	<h3> Data Pre-processing</h3>
+	<p> The aim of pre-processing the data in the DeepSDF reproduction is the input of .obj files and the output of .npz data type samples.</p>
 
+	<h2>2. Reproduction of Prior aided-<b>bolted IDR bolted</b> </h2> 
+	
+	<h3> Training Dataset</h3>
+	
+	<h3> Setting up Dependencies </h3>
+	
+	<h3> Data Pre-processing</h3>
+	
 	
 	<div class="references">
  	 <h2> References</h2>
@@ -73,6 +109,8 @@
 			[2] Lior Yariv, Yoni Kasten, Dror Moran, Meirav Galun, Matan Atzmon, Basri Ronen, and Yaron Lipman.
 			Multiview neural surface reconstruction by disentangling geometry and appearance. NeurIPS, 33, 2020.
 		</p>
+		<p> id = "FLAME">
+		     [3] https://github.com/Rubikplayer/flame-fitting
 	</div>
 	
 </body>
