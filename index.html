@@ -139,15 +139,18 @@
 			    <li> for each 3D point its Signed Distance Function to the object shape, which is the geometry represenation. Actually the geometry is represented as a zero level-set of a neural network f: 
 				<p class="mjax">
 			\begin{equation}
-			V_A = R \cdot I_A + L \dot{I_A} - p \cdot \Psi_M \cdot \sin (p \cdot \theta) \frac{d \theta}{dt}
+			    S_{\theta}=\{ x \in R^3|f(x;\theta)=0\}
 			\label{eq:VsumA2}
 			\end{equation}
 		</p></li>
 	  		    <li>the camera parameters</li>
-	   		    <li>the heads don't have shoulders</li>
+	   		    <li>a wide set of lighting conditions and materials, usingn a neural renderer, which actually represents the realistic appearances of the objects</li>
 			</ol>
-			</p>
-	
+		The <b>training data</b> is actually real world 2D images of objects of multiple views (approximately 60 views). These objects are not head representations but various, random objects such as 3D skull objects, 3D rabbit representations and so on so forth. An idea on the used datasets can be seen in <a href="https://ioannachano.github.io/index.html#Jeong">[1]</a>. 
+		Thus, the contribution of the neural-network architecture of IDR-system is that it can infer from masked 2D images, <b> 3D geometries, appearances </b> and <b>camera parameters </b>, under which those images were captured.
+		More specifically, by appearances it is meant all the factors that define the surface light field, excluding the geometry, for instance, the scene's lighting conditions.	</p>
+		Furthermore, let's give some definitions and their notations. The camera orientation c, and a pixel,p define a viewing direction v, then given c,p we would like to produce differentiable RGB values. AWe can trace the first intersection of the viewing ray with the implicit surface S. The intersection point is x, with:
+		
 		<h2>  Reproduction   </h2> 
 	
 	<h2>1. Reproduction of DeepSDF prior </h2> 
