@@ -74,6 +74,21 @@
 		   
 		      
 	</style>
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	"HTML-CSS": { linebreaks: { automatic: true } },
+			SVG: { linebreaks: { automatic: true } }
+	});
+	</script> <!-- MATHJAX wrapping-->
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!-- MATHJAX -->
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!-- MATHJAX -->
+	<script>
+		window.MathJax = {
+		tex: {
+		tags: 'ams'
+		}
+		};
+	</script> <!-- MATHJAX eq labeling on-->
 </head>
 
 <body>
@@ -107,10 +122,31 @@
 			</ul>
 			<p>&nbsp;</p>
 			<div class="row">
-			<div class="column" style="text-align: center;"><img style="width: 523px; display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/StructureDeepSDF.png" alt="Snow" height="80" /> Figure.1 Input (left) and Output (right) of the DeepSDF network.</div>
+			<div class="column" 
+				style="text-align: center;"><img style="width: 523px; display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/StructureDeepSDF.png" alt="Snow" height="80" /> Figure.1 Input (left) and Output (right) of the DeepSDF network.</div>
+			</div>
 			</div>
   		<h3> 2. Prior aided-IDR </h3>
-    			<p>Example text exampletext exampletext <b>bolted bolted</b> <i>italics italics</i> exampletext exampletext exampletext example</p>
+    			<p> The goal of the Implicit Differentiable Renderer(IDR) is to reproduce the 3D geometry of an object given 2D views - images with noisy camera information.
+			<div class="row">
+		  		<div class="column">
+		    			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG" alt="Snow" style="width:100%">
+								Figure.3 Notation definitions 
+		  		</div>
+			</div>
+			For this purpose, the IDR learns: 	
+			<ol>
+			    <li> for each 3D point its Signed Distance Function to the object shape, which is the geometry represenation. Actually the geometry is represented as a zero level-set of a neural network f: 
+				<p class="mjax">
+			\begin{equation}
+			V_A = R \cdot I_A + L \dot{I_A} - p \cdot \Psi_M \cdot \sin (p \cdot \theta) \frac{d \theta}{dt}
+			\label{eq:VsumA2}
+			\end{equation}
+		</p></li>
+	  		    <li>the camera parameters</li>
+	   		    <li>the heads don't have shoulders</li>
+			</ol>
+			</p>
 	
 		<h2>  Reproduction   </h2> 
 	
