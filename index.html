@@ -1,214 +1,276 @@
 <!DOCTYPE html>
 <html>
 
-	<style>
-		
-		body
-		{
-            background-color: initial;
-            margin: 0 64px 0 64px;
-		}
+<style>
+	* {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	body {
+		background-color: initial;
+		margin: 0 64px 0 64px;
+	}
 
 
-        h1
-        {   
-            color: initial;
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 32px 0 32px 0;
-        }
+	h1 {
+		color: initial;
+		font-family: Arial, Helvetica, sans-serif;
+		margin: 32px 0 32px 0;
+	}
 
-        h2
-        {   
-            color: initial;
-            font-family: Arial, Helvetica, sans-serif;
-            margin-top: 50px;
-        }
+	h2 {
+		color: initial;
+		font-family: Arial, Helvetica, sans-serif;
+		margin-top: 50px;
+	}
 
-        h3
-        {   
-            color: initial;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-		
-		p
-		{   
-        	color: initial;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: justify;
-        }
-		
-		.row
-		{
-		    margin: 32px 0 32px 0;
-		}
-		
-		.column
-		{
-			float: left;
-			width: 33.33%;
-			padding: 5px;
-			box-sizing: border-box;
-			text-align: center;
-			color: grey;
-			text-align: center;
-		}
+	h3 {
+		color: initial;
+		font-family: Arial, Helvetica, sans-serif;
+	}
 
-		.row::after
-		{
-			content: "";
-			clear: both;
-			display: table;
-			box-sizing: border-box;
-		}
-		
-		ul
-		{
-        	color: initial;
-            font-family: Arial, Helvetica, sans-serif;
-		}
-		
-		div.references
-		{
-			color: gray;
-		}
-		   
-		      
-	</style>
-	<script type="text/x-mathjax-config">
+	p {
+		color: initial;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: justify;
+	}
+
+	.row {
+		margin: 32px auto 32px auto;
+		max-width: 1200px;
+	}
+
+	.column {
+		float: left;
+		width: 33.33%;
+		padding: 5px;
+		box-sizing: border-box;
+		text-align: center;
+		color: grey;
+		text-align: center;
+	}
+
+	.column img {
+		width: 100%;
+	}
+
+	.row::after {
+		content: "";
+		clear: both;
+		display: table;
+		box-sizing: border-box;
+	}
+
+	.oneimg {
+		margin: 32px auto 32px auto;
+		max-width: 600px;
+		padding: 5px;
+		box-sizing: border-box;
+		text-align: center;
+		color: grey;
+		text-align: center;
+
+	}
+
+	.oneimg img {
+		width: 100%;
+	}
+
+	ul {
+		color: initial;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	div.references {
+		color: gray;
+	}
+</style>
+<script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 	"HTML-CSS": { linebreaks: { automatic: true } },
 			SVG: { linebreaks: { automatic: true } }
 	});
 	</script> <!-- MATHJAX wrapping-->
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!-- MATHJAX -->
-	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!-- MATHJAX -->
-	<script>
-		window.MathJax = {
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!-- MATHJAX -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MATHJAX -->
+<script>
+	window.MathJax = {
 		tex: {
-		tags: 'ams'
+			tags: 'ams'
 		}
-		};
-	</script> <!-- MATHJAX eq labeling on-->
+	};
+</script> <!-- MATHJAX eq labeling on-->
 </head>
 
 <body>
 	<h1 style="margin-bottom: 16px;"> Reproducibility of 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction'</h1>
-	<h2 style="margin-top: 16px; margin-bottom: 64px;"> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola, Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
-	<h2>Introduction</h2>
-		<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed approaches involve two categories: model-based and model-free.
-		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' aims to reconstruct 3-D head surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches. 
-		The way to do this is the addition of prior knowledge to the Implicit Differentiable Renderer (IDR) <a href="https://ioannachano.github.io/index.html#Lior">[2] </a>. Furthermore, in order to include this knowledge a prior is trained using thousands of raw incomplete scans
-		to learn the Signed Distance Functions (SDF), which represent the head geometry <a href="https://ioannachano.github.io/index.html#Jeong">[1]</a>. This approach is the H3D-Net, which given only 3 input images it estimates the full 
-		head shape. In the following sections the employed method will be further analysed and then, the reproducibility results are going to be presented. 
-		</p>
-	<h2>Method</h2>
-		<p>As already mentioned H3D-Net is based on training a prior, namely training the already existing DeepSDF <a href="https://ioannachano.github.io/index.html#Jeong">[1]</a> network and using it to initialize the already existing IDR <a href="https://ioannachano.github.io/index.html#Lior">[2] </a> to reduce the needed amount of inputs, leading to
-		the need of only 3 2-D images to get the whole 3-D head representation. Thus, H3D-Net is comprised of two steps: </p> 
-  		<h3> 1. Prior based on DeepSDF </h3>
-    			<p>The implementation of the DeepSDF network as a prior, being an already established method of representing classes of objects as a learned Signed Distance Function (SDF), is an effective tool to overcome intrinsic difficulties that pertain 3D object reconstruction from limited 2D images and therefore increases the overall efficiency. How does the network function, however, and what inputs does it require in order to come into effect?</p>
-			<p>The key method of the DeepSDF lies on the concept of the signed distance function which can be described as a continuous volumetric field associated with not a single object, but an entire class of objects. The actual surface of the object is then implicitly given from the decision boundary of the function as seen in the figure.</p>
-			<div class="row">
-			<div class="column"><img style="width: 387px; display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/ExampleSDF.png" alt="Snow" height="259" /></div>
-			<div class="column">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Figure.1 Example of an SDF representation of a volume the</div>
-			<div class="column">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;decision boundary of which constitutes the object's surface.</div>
-			</div>
-			<p>&nbsp;</p>
-			<p>DeepSDF utilizes a set of scenes with the associated raw 3D point clouds and, in combination with their SDF values, is used to train a deep neural network that produces the SDF value at the 3D query location.</p>
-			<p>Key parameters of the network:</p>
-			<ul>
-			<li>Eight 512-dimensional layers with ReLU non-linearities</li>
-			<li>Use of latent vector as a form of encoding the desired shape as an input to the network</li>
-			<li>Use of auto-decoder without an encoder.</li>
-			</ul>
-			<p>&nbsp;</p>
-			<div class="row">
-			<div class="column" 
-				style="text-align: center;"><img style="width: 523px; display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/StructureDeepSDF.png" alt="Snow" height="80" /> Figure.1 Input (left) and Output (right) of the DeepSDF network.</div>
-			</div>
-			</div>
-  		<h3> 2. Prior aided-IDR </h3>
-    			<p> The goal of the Implicit Differentiable Renderer(IDR) is to reproduce the 3D geometry of an object given 2D views - images with noisy camera information.
-			<div class="row">
-		  		<div class="column">
-		    			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG" alt="Snow" style="width:100%">
-								Figure.3 Notation definitions 
-		  		</div>
-			</div>
-			For this purpose, the IDR learns: 	
-			<ol>
-			    <li> for each 3D point its Signed Distance Function to the object shape, which is the geometry represenation. Actually the geometry is represented as a zero level-set of a neural network f: 
-				<p class="mjax">
-			\begin{equation}
-			    S_{\theta}=\{ x \in R^3|f(x;\theta)=0\}
-			\label{eq:VsumA2}
-			\end{equation}
-		</p></li>
-	  		    <li>the camera parameters</li>
-	   		    <li>a wide set of lighting conditions and materials, usingn a neural renderer, which actually represents the realistic appearances of the objects</li>
-			</ol>
-		The <b>training data</b> is actually real world 2D images of objects of multiple views (approximately 60 views). These objects are not head representations but various, random objects such as 3D skull objects, 3D rabbit representations and so on so forth. An idea on the used datasets can be seen in <a href="https://ioannachano.github.io/index.html#Jeong">[1]</a>. 
-		Thus, the contribution of the neural-network architecture of IDR-system is that it can infer from masked 2D images, <b> 3D geometries, appearances </b> and <b>camera parameters </b>, under which those images were captured.
-		More specifically, by appearances it is meant all the factors that define the surface light field, excluding the geometry, for instance, the scene's lighting conditions.	</p>
-		Furthermore, let's give some definitions and their notations. The camera orientation c, and a pixel,p define a viewing direction v, then given c,p we would like to produce differentiable RGB values. AWe can trace the first intersection of the viewing ray with the implicit surface S. The intersection point is x, with:
-		
-		<h2>  Reproduction   </h2> 
-	
-	<h2>1. Reproduction of DeepSDF prior </h2> 
-	
-	<h3> Training Dataset</h3>
-	<p> The original dataset used in the paper wasn't available for public use - due to confientiality issues, since the authors are currently collaborating with a company which owns the original data- alternatively, we produced thousands of 3D head samples using the <b>FLAME</b> 3D morphable model of heads <a href="https://ioannachano.github.io/index.html#FLAME">[3]</a>.
-	More specifically, we produced almost 10000 3D head samples, whose data type is '.obj'. One of these 10000 samples can be seen in the following figure.  
-			
-		<p>One out of 10000 produced 3D head samples:</p>
+	<h2 style="margin-top: 16px; margin-bottom: 64px;"> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola,
+		Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
 
-		<div class="row">
-		  <div class="column">
-		    <img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp.PNG?fbclid=IwAR23U9w5wZGSjZReKUUoa2jE6NoXkeCK5eo_OP7wxz2wbNc4ALq721Wj6W8" alt="Snow" style="width:100%">
-				Figure.1 3D head(<i>.obj</i> data type) continuous view 
-		  </div>
-		  <div class="column">
-		    <img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_mesh.png" alt="Forest" style="width:100%">
-				Figure.2 3D head mesh view
-		  </div>
-		  <div class="column">
-		    <img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_notClosed.png" alt="Mountains" style="width:100%">
-		  		Figure.3 3D head discontinuous view
+	<h2>Introduction</h2>
+	<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed
+		approaches involve two categories: model-based and model-free.
+		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' aims to reconstruct 3-D head
+		surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches.
+		The way to do this is the addition of prior knowledge to the Implicit Differentiable Renderer (IDR) <a
+			href="https://ioannachano.github.io/index.html#Lior">[2] </a>. Furthermore, in order to include this
+		knowledge a prior is trained using thousands of raw incomplete scans
+		to learn the Signed Distance Functions (SDF), which represent the head geometry <a
+			href="https://ioannachano.github.io/index.html#Jeong">[1]</a>. This approach is the H3D-Net, which given
+		only 3 input images it estimates the full
+		head shape. In the following sections the employed method will be further analysed and then, the reproducibility
+		results are going to be presented.
+	</p>
+
+	<h2>Method</h2>
+	<p>As already mentioned H3D-Net is based on training a prior, namely training the already existing DeepSDF <a
+			href="https://ioannachano.github.io/index.html#Jeong">[1]</a> network and using it to initialize the already
+		existing IDR <a href="https://ioannachano.github.io/index.html#Lior">[2] </a> to reduce the needed amount of
+		inputs, leading to
+		the need of only 3 2-D images to get the whole 3-D head representation. Thus, H3D-Net is comprised of two steps:
+	</p>
+
+	<h3> 1. Prior based on DeepSDF </h3>
+	<p>The implementation of the DeepSDF network as a prior, being an already established method of representing classes
+		of objects as a learned Signed Distance Function (SDF), is an effective tool to overcome intrinsic difficulties
+		that pertain 3D object reconstruction from limited 2D images and therefore increases the overall efficiency. How
+		does the network function, however, and what inputs does it require in order to come into effect?</p>
+	<p>The key method of the DeepSDF lies on the concept of the signed distance function which can be described as a
+		continuous volumetric field associated with not a single object, but an entire class of objects. The actual
+		surface of the object is then implicitly given from the decision boundary of the function as seen in the figure.
+	</p>
+	<div class="oneimg">
+		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/ExampleSDF.png"
+			alt="Snow" />
+		Figure.1 Example of an SDF representation of a volume the decision boundary of which constitutes the
+		object's surface.
+	</div>
+	<p>DeepSDF utilizes a set of scenes with the associated raw 3D point clouds and, in combination with their SDF
+		values, is used to train a deep neural network that produces the SDF value at the 3D query location.</p>
+	<p>Key parameters of the network:</p>
+	<ul>
+		<li>Eight 512-dimensional layers with ReLU non-linearities</li>
+		<li>Use of latent vector as a form of encoding the desired shape as an input to the network</li>
+		<li>Use of auto-decoder without an encoder.</li>
+	</ul>
+	<div class="oneimg">
+		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/StructureDeepSDF.png"
+			alt="Snow" />
+		Figure.1 Input (left) and Output (right) of the DeepSDF network.
+	</div>
+
+	<h3> 2. Prior aided-IDR </h3>
+	<p> The goal of the Implicit Differentiable Renderer(IDR) is to reproduce the 3D geometry of an object given 2D
+		views - images with noisy camera information.
+	</p>
+	<div class="oneimg" style="max-width: 300px;">
+		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
+			alt="Snow">
+		Figure.3 Notation definitions
+	</div>
+
+	For this purpose, the IDR learns:
+	<ol>
+		<li> for each 3D point its Signed Distance Function to the object shape, which is the geometry represenation.
+			Actually the geometry is represented as a zero level-set of a neural network f:
+			<p class="mjax">
+				\begin{equation}
+				S_{\theta}=\{ x \in R^3|f(x;\theta)=0\}
+				\label{eq:VsumA2}
+				\end{equation}
+			</p>
+		</li>
+		<li>the camera parameters</li>
+		<li>a wide set of lighting conditions and materials, usingn a neural renderer, which actually represents the
+			realistic appearances of the objects</li>
+	</ol>
+	<p>
+		The <b>training data</b> is actually real world 2D images of objects of multiple views (approximately 60 views).
+		These objects are not head representations but various, random objects such as 3D skull objects, 3D rabbit
+		representations and so on so forth. An idea on the used datasets can be seen in <a
+			href="https://ioannachano.github.io/index.html#Jeong">[1]</a>.
+	</p>
+	<p>
+		Thus, the contribution of the neural-network architecture of IDR-system is that it can infer from masked 2D
+		images,
+		<b> 3D geometries, appearances </b> and <b>camera parameters </b>, under which those images were captured.
+		More specifically, by appearances it is meant all the factors that define the surface light field, excluding the
+		geometry, for instance, the scene's lighting conditions.
+	</p>
+	<p>
+		Furthermore, let's give some definitions and their notations. The camera orientation c, and a pixel,p define a
+		viewing direction v, then given c,p we would like to produce differentiable RGB values. AWe can trace the first
+		intersection of the viewing ray with the implicit surface S. The intersection point is x, with:
+	</p>
+
+	<h2> Reproduction </h2>
+
+	<h2>1. Reproduction of DeepSDF prior </h2>
+
+	<h3> Training Dataset</h3>
+	<p> The original dataset used in the paper wasn't available for public use - due to confientiality issues, since the
+		authors are currently collaborating with a company which owns the original data- alternatively, we produced
+		thousands of 3D head samples using the <b>FLAME</b> 3D morphable model of heads <a
+			href="https://ioannachano.github.io/index.html#FLAME">[3]</a>.
+		More specifically, we produced almost 10000 3D head samples, whose data type is '.obj'. One of these 10000
+		samples can be seen in the following figure.
+
+	<p>One out of 10000 produced 3D head samples:</p>
+
+	<div class="row">
+		<div class="column">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp.PNG?fbclid=IwAR23U9w5wZGSjZReKUUoa2jE6NoXkeCK5eo_OP7wxz2wbNc4ALq721Wj6W8"
+				alt="Snow">
+			Figure.1 3D head(<i>.obj</i> data type) continuous view
 		</div>
+		<div class="column">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_mesh.png"
+				alt="Forest">
+			Figure.2 3D head mesh view
 		</div>
+		<div class="column">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_notClosed.png"
+				alt="Mountains">
+			Figure.3 3D head discontinuous view
+		</div>
+	</div>
 	<p>As we can see the training data are characterized by:</p>
 	<ul>
-	    <li>non-continuouity of the meshes, with open spaces on the bottom of the heads</li>
-	    <li>the heads don't have hair</li>
-	    <li>the heads don't have shoulders</li>
+		<li>non-continuouity of the meshes, with open spaces on the bottom of the heads</li>
+		<li>the heads don't have hair</li>
+		<li>the heads don't have shoulders</li>
 	</ul>
-	
+
 	<p>These are some of the contributing factors for ... </p>
-	
-	
-	<h3> Setting up Dependencies </h3>
-	<p>It is certain that setting up the github repository dependencies has been the most difficult part of the project leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
-	 Different package versions as well as operating system in Linux created major obstacles resulting in ...
-	on the way</p>
-	
-	<h3> Data Pre-processing</h3>
-	<p> The aim of pre-processing the data in the DeepSDF reproduction is the input of .obj files and the output of .npz data type samples.</p>
 
-	<h2>2. Reproduction of Prior aided-IDR </h2> 
-	
+
+	<h3> Setting up Dependencies </h3>
+	<p>It is certain that setting up the github repository dependencies has been the most difficult part of the project
+		leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
+		Different package versions as well as operating system in Linux created major obstacles resulting in ...
+		on the way</p>
+
+	<h3> Data Pre-processing</h3>
+	<p> The aim of pre-processing the data in the DeepSDF reproduction is the input of .obj files and the output of .npz
+		data type samples.</p>
+
+	<h2>2. Reproduction of Prior aided-IDR </h2>
+
 	<h3> Training Dataset</h3>
-	
-	<h3> Setting up Dependencies </h3>
-	
-	<h3> Data Pre-processing</h3>
-	
-	
-	
-	
 
-	
-	
+	<h3> Setting up Dependencies </h3>
+
+	<h3> Data Pre-processing</h3>
+
+
+
+
+
+
+
 	<div class="references">
- 	 <h2> References</h2>
+		<h2> References</h2>
 		<p id="Jeong">
 			[1] Jeong Joon Park, Peter Florence, Julian Straub, Richard Newcombe, and Steven Lovegrove.
 			Deepsdf: Learning continuous signed distance functions for shape representation.In CVPR, 2019
@@ -217,14 +279,15 @@
 			[2] Lior Yariv, Yoni Kasten, Dror Moran, Meirav Galun, Matan Atzmon, Basri Ronen, and Yaron Lipman.
 			Multiview neural surface reconstruction by disentangling geometry and appearance. NeurIPS, 33, 2020.
 		</p>
-		
+
 		<p id="FLAME">
-			 [3] https://github.com/Rubikplayer/flame-fitting
+			[3] https://github.com/Rubikplayer/flame-fitting
 		</p>
-		
-		    
-		
+
+
+
 	</div>
-	
+
 </body>
+
 </html>
