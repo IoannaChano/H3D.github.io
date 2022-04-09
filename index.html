@@ -36,9 +36,9 @@
 	}
 	code {
 		  font-family: Consolas,"courier new";
-		  color: crimson;
+		  color: black;
 		  background-color: #f1f1f1;
-		  padding: 2px;
+		  padding: 4px;
 		  font-size: 105%;
 	}
 
@@ -207,9 +207,9 @@
 		</div>
 		Nevertheless, we can calculate the intersection point, x as:
 		<p class="mjax">
-		\begin{equation}  
-			x = c + tv - \frac{v}{\nabla{f_0}\cdotv_0f(c+tv)
-		\end{equation}
+		         \begin{equation}  
+			x = c + tv - \frac{v}{\nabla{f_0}\cdotv_0f(c+tv)}
+		         \end{equation}
 		<\p>
 	</p>
 
@@ -258,7 +258,7 @@
 		leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
 		DeepSDF requiered four main packages to be installed to perform the training. The four packages are eigen, nanoflann, CLI11 and Pangolin. </p>
 	<p>we believe that if one wants to train DeepSDF, he must set up the dependecies with the least hurdle. Hence, the step by step building process of the requiered packages are displayed below. The steps are working for a google cloud platform instance using Deep Learning instance... </p>
-				
+	<h4>Eigen</h4>			
 	<h4>Pangolin4</h4>
 	<ul>			
 		<li><code>git clone --recursive https://github.com/stevenlovegrove/Pangolin.git</code></li>
@@ -269,7 +269,27 @@
 		<li><code>cmake --build . </code></li>
 		<li><code>make install </code></li>
 	</ul>
-				
+	
+	<h4>CLI11</h4>
+		<ul>			
+		<li><code>git clone git@github.com:CLIUtils/CLI11.git</code></li>
+		<li><code>cd CLI11</code></li>	
+		<li><code>mkdir build && cd build </code></li>
+		<li><code>cmake .. </code></li>
+		<li><code>cmake --build . </code></li>
+		<li><code>make install </code></li>
+	</ul>
+		
+	<h4>nanoflann</h4>
+	<ul>			
+		<li><code>git clone git@github.com:jlblancoc/nanoflann.git</code></li>
+		<li><code>cd nanoflann</code></li>	
+		<li><code>mkdir build && cd build </code></li>
+		<li><code>cmake .. </code></li>
+		<li><code>cmake --build . </code></li>
+		<li><code>make install </code></li>
+	</ul>
+	
 				
 				
 	<h3> Data Pre-processing</h3>
