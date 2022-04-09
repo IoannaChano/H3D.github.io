@@ -110,28 +110,25 @@
 
 	<h2>Introduction</h2>
 	<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed
-		approaches involve two categories: model-based and model-free.
+		approaches involve two categories: model-based and model-free. 
 		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' aims to reconstruct 3-D head
-		surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches.
-		The way to do this is the addition of prior knowledge to the Implicit Differentiable Renderer (IDR) <a
-			href="#Lior">[2] </a>. Furthermore, in order to include this
-		knowledge a prior is trained using thousands of raw incomplete scans
-		to learn the Signed Distance Functions (SDF), which represent the head geometry <a href="#Jeong">[1]</a>. This
-		approach is the H3D-Net, which given
-		only 3 input images it estimates the full
-		head shape. In the following sections the employed method will be further analysed and then, the reproducibility
-		results are going to be presented.
+		surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches and existing work
+		in <a href="#Jeong">[1]</a> and Implicit Differentiable Renderer (IDR) <ahref="#Lior">[2] </a>. 
+		This H3D-Net approach aims at estimating the full head shape using given just 3 2-D images. In order to achieve this reduced amount of input images, 
+		it is needed to include prior knowledge based on DeepSDF<a href="#Jeong">[1]</a>. DeepSDF is trained using thousands of raw incomplete scans
+		to learn the Signed Distance Functions (SDF), which represent the head geometry <a href="#Jeong">[1]</a>.In the following sections, the employed H3D-Net
+		method will be further analysed and then, the reproducibility results are going to be presented.
 	</p>
 
 	<h2>Method</h2>
-	<p>As already mentioned H3D-Net is based on training a prior, namely training the already existing DeepSDF <a
+	<p>As already mentioned H3D-Net is based on training a prior, namely the already existing DeepSDF <a
 			href="#Jeong">[1]</a> network and using it to initialize the already
 		existing IDR <a href="#Lior">[2] </a> to reduce the needed amount of
 		inputs, leading to
 		the need of only 3 2-D images to get the whole 3-D head representation. Thus, H3D-Net is comprised of two steps:
 	</p>
 
-	<h3> 1. Prior based on DeepSDF </h3>
+	<h3> 1. DeepSDF </h3>
 	<p>The implementation of the DeepSDF network as a prior, being an already established method of representing classes
 		of objects as a learned Signed Distance Function (SDF), is an effective tool to overcome intrinsic difficulties
 		that pertain 3D object reconstruction from limited 2D images and therefore increases the overall efficiency. How
@@ -160,18 +157,12 @@
 		Figure.1 Input (left) and Output (right) of the DeepSDF network.
 	</div>
 
-	<h3> 2. Prior aided-IDR </h3>
+	<h3> 2. IDR </h3>
 	<p> The goal of the Implicit Differentiable Renderer(IDR) is to reproduce the 3D geometry of an object given 2D
 		views - images with noisy camera information.
 	</p>
-	<div class="oneimg" style="max-width: 300px;">
-		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
-			alt="Snow">
-		Figure.3 Notation definitions
-	</div>
-
-	For this purpose, the IDR learns:
-	<ol>
+	<p>For this purpose, the IDR learns:<\p>
+	<p><ol>
 		<li> for each 3D point its Signed Distance Function to the object shape, which is the geometry represenation.
 			Actually the geometry is represented as a zero level-set of a neural network f:
 			<p class="mjax">
@@ -184,7 +175,7 @@
 		<li>the camera parameters</li>
 		<li>a wide set of lighting conditions and materials, usingn a neural renderer, which actually represents the
 			realistic appearances of the objects</li>
-	</ol>
+	</ol><\p>
 	<p>
 		The <b>training data</b> is actually real world 2D images of objects of multiple views (approximately 60 views).
 		These objects are not head representations but various, random objects such as 3D skull objects, 3D rabbit
@@ -198,9 +189,21 @@
 		geometry, for instance, the scene's lighting conditions.
 	</p>
 	<p>
-		Furthermore, let's give some definitions and their notations. The camera orientation c, and a pixel,p define a
-		viewing direction v, then given c,p we would like to produce differentiable RGB values. AWe can trace the first
-		intersection of the viewing ray with the implicit surface S. The intersection point is x, with:
+		Furthermore, let's give some definitions and their notations. The camera orientation, <b>c<\b> and a pixel, p define a
+		viewing direction, <b>v<\b>. Then, given the parameters c,p we would like to produce differentiable RGB values. Additionally, we can trace the first
+		intersection point, <b>x<\b>, of the viewing ray with the implicit surface <b>$S_{\theta}$<\b>. Finally, the direction of the ray is denoted by t and the normal to the surface vector as n. 
+		All of these definitions are visually inspected on Figure.3. 
+		<div class="oneimg">
+		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
+			alt="Snow" />
+		Figure.3 Notation Definitions
+		</div>
+		Nevertheless, we can calculate the intersection point, x as:
+		<p class="mjax">
+		\begin{equation}  
+			<b>x<\b> = <b>c<\b> + t<b>v<\b> - \frac{\<b>v<\b>}{\nabla{f_0}\cdot<b>v_0<\b>f(c+t<b>v<\b>)
+		\end{equation}
+		<\p>
 	</p>
 
 	<h2> Reproduction </h2>
