@@ -189,9 +189,9 @@
 		geometry, for instance, the scene's lighting conditions.
 	</p>
 	<p>
-		Furthermore, let's give some definitions and their notations. The camera orientation, <b>c<\b> and a pixel, p define a
-		viewing direction, <b>v<\b>. Then, given the parameters c,p we would like to produce differentiable RGB values. Additionally, we can trace the first
-		intersection point, <b>x<\b>, of the viewing ray with the implicit surface <b>$S_{\theta}$<\b>. Finally, the direction of the ray is denoted by t and the normal to the surface vector as n. 
+		Furthermore, let's give some definitions and their notations. The camera orientation, c and a pixel, p define a
+		viewing direction, v. Then, given the parameters c,p we would like to produce differentiable RGB values. Additionally, we can trace the first
+		intersection point, x, of the viewing ray with the implicit surface $S_{\theta}$. Finally, the direction of the ray is denoted by t and the normal to the surface vector as n. 
 		All of these definitions are visually inspected on Figure.3. 
 		<div class="oneimg">
 		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
@@ -213,7 +213,7 @@
 	<h3> Training Dataset</h3>
 	<p> The original dataset used in the paper wasn't available for public use - due to confientiality issues, since the
 		authors are currently collaborating with a company which owns the original data- alternatively, we produced
-		thousands of 3D head samples using the <b>FLAME</b> 3D morphable model of heads <a href="#FLAME">[3]</a>.
+		thousands of 3D head samples using the FLAME 3D morphable model of heads <a href="#FLAME">[3]</a>.
 		More specifically, we produced almost 10000 3D head samples, whose data type is '.obj'. One of these 10000
 		samples can be seen in the following figure.
 
@@ -250,7 +250,15 @@
 	<p>It is certain that setting up the github repository dependencies has been the most time consuming part of the project
 		leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
 		DeepSDF requiered four main packages to be installed to perform the training. The four packages are eigen, nanoflann, CLI11 and Pangolin. </p>
-	<p>we believe that if one wants to train DeepSDF, he must set up the dependecies with the least hurdle. Hence, the step by step building of the requiered packages are displayed below. </p>
+	<p>we believe that if one wants to train DeepSDF, he must set up the dependecies with the least hurdle. Hence, the step by step building process of the requiered packages are displayed below. The steps are working for a google cloud platform instance using Deep Learning instance... </p>
+				
+	<h4>Pangolin4</h4>
+	<p><code>git clone URL</code>
+	   <code>git clone URL</code>	
+	   <code>git clone URL</code>	
+				
+				
+				
 	<h3> Data Pre-processing</h3>
 	<p> The aim of pre-processing the data in the DeepSDF reproduction is the input of .obj files and the output of .npz
 		data type samples.</p>
