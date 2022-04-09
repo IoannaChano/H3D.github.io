@@ -257,8 +257,9 @@
 	<p>It is certain that setting up the github repository dependencies has been the most time consuming part of the project
 		leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
 		DeepSDF requiered four main packages to be installed to perform the training. The four packages are eigen, nanoflann, CLI11 and Pangolin. </p>
-	<p>we believe that if one wants to train DeepSDF, he must set up the dependecies with the least hurdle. Hence, the step by step building process of the requiered packages are displayed below. If you follow the steps in the following order, one should be able to successfully build DeepSDF inside a Deep Learning VM instance of google cloud platform.</p>
+	<p>We believe that if one wants to train DeepSDF, he must set up the dependecies with the least hurdle as possible. Hence, the step by step building process of the requiered packages are displayed below. If you follow the steps in the following order, one should be able to successfully build DeepSDF inside a Deep Learning VM instance of Google Cloud Platform.</p>
 	<h4>Eigen</h4>	
+	<ul>
 		<li><code>git clone https://gitlab.com/libeigen/eigen.git</code></li>
 		<li><code>cd eigen</code></li>	
 		<li><code> git checkout 3.4</code></li>
@@ -266,6 +267,7 @@
 		<li><code>cmake .. </code></li>
 		<li><code>cmake --build . </code></li>
 		<li><code>sudo make install </code></li>
+	</ul>
 	<h4>Pangolin4</h4>
 	<ul>			
 		<li><code>git clone --recursive https://github.com/stevenlovegrove/Pangolin.git</code></li>
