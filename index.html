@@ -115,7 +115,10 @@
 	<h2 style="margin-top: 16px; margin-bottom: 64px;"> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola,
 		Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
 
-	<h2>Introduction</h2>
+	#####################################################
+	######### TODO: Add contact information on first page
+	#####################################################
+	<h2> #### TODO :Introduction</h2>
 	<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed
 		approaches involve two categories: model-based and model-free. 
 		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' aims to reconstruct 3-D head
@@ -127,7 +130,7 @@
 		method will be further analysed and then, the reproducibility results are going to be presented.
 	</p>
 
-	<h2>Method</h2>
+	<h2>Method in Theory</h2>
 	<p>As already mentioned H3D-Net is based on training a prior, namely the already existing DeepSDF <a
 			href="#Jeong">[1]</a> network and using it to initialize the already
 		existing IDR <a href="#Lior">[2] </a> to reduce the needed amount of
@@ -198,11 +201,11 @@
 	<p>
 		Furthermore, let's give some definitions and their notations. The camera orientation, c and a pixel, p define a
 		viewing direction, v. Then, given the parameters c,p we would like to produce differentiable RGB values. Additionally, we can trace the first
-		intersection point, x, of the viewing ray with the implicit surface $S_{\theta}$. Finally, the direction of the ray is denoted by t and the normal to the surface vector as n. 
+		intersection point, x, of the viewing ray with the implicit surface S_{\theta}. Finally, the direction of the ray is denoted by t and the normal to the surface vector as n. 
 		All of these definitions are visually inspected on Figure.3. 
 		<div class="oneimg">
 		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
-			alt="Snow" />
+			alt="Snow" / width ='200' height ='300'>
 		Figure.3 Notation Definitions
 		</div>
 		Nevertheless, we can calculate the intersection point, x as:
@@ -213,16 +216,18 @@
 		<\p>
 	</p>
 
-	<h2> Reproduction </h2>
+	<h2> Reproduction of H3D-Net </h2>
+	H3D-Net is an architecture which is, fundamentally, the combination of the IDR model <a href="#Lior">[2] </a> and a pretrained model based on DeepSDF <a href="#Jeong">[1] </a>. 
 
 	<h2>1. Reproduction of DeepSDF prior </h2>
+	Based on the github repository in <a href="#D_SDF_repo">[4]</a> the steps to get DeepSDF are to preprocess the training data, then run the corresponding script
+	to train a model and then, evaluate the results by getting the corresponding SDF representations. Next, these steps are reproduced for a training set we produced
+	and our work methodology is described along with the challenges and issues we encountered on the way. 
 
 	<h3> Training Dataset</h3>
-	<p> The original dataset used in the paper wasn't available for public use - due to confientiality issues, since the
-		authors are currently collaborating with a company which owns the original data- alternatively, we produced
-		thousands of 3D head samples using the FLAME 3D morphable model of heads <a href="#FLAME">[3]</a>.
-		More specifically, we produced almost 10000 3D head samples, whose data type is '.obj'. One of these 10000
-		samples can be seen in the following figure.
+	<p> The original dataset used to train the prior, in the paper, wasn't available for public use - due to confidentiality issues, since the authors are currently 
+	    collaborating with a company which owns the original data- alternatively, we produced thousands of 3D head samples using the FLAME 3D morphable model of heads <a href="#FLAME">[3]</a>.
+	    More specifically, we produced almost 10000 of 3D head samples, whose data type is '.obj'. One of these 10000 samples can be seen in the following figure.
 
 	<p>One out of 10000 produced 3D head samples:</p>
 
@@ -230,33 +235,33 @@
 		<div class="column">
 			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp.PNG?fbclid=IwAR23U9w5wZGSjZReKUUoa2jE6NoXkeCK5eo_OP7wxz2wbNc4ALq721Wj6W8"
 				alt="Snow">
-			Figure.1 3D head(<i>.obj</i> data type) continuous view
+			Figure.1 FLAME model 3D head(<i>.obj</i> data type) 
 		</div>
 		<div class="column">
 			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_mesh.png"
 				alt="Forest">
-			Figure.2 3D head mesh view
+			Figure.2 Mesh view of the 3D head
 		</div>
 		<div class="column">
 			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_notClosed.png"
 				alt="Mountains">
-			Figure.3 3D head discontinuous view
+			Figure.3 Open area on the bottom of the 3D head shape 
 		</div>
 	</div>
 	<p>As we can see the training data are characterized by:</p>
 	<ul>
-		<li>non-continuouity of the meshes, with open spaces on the bottom of the heads</li>
+		<li>Non-watertight meshes - incomlpete, open area on the bottom of the heads</li>
 		<li>the heads don't have hair</li>
 		<li>the heads don't have shoulders</li>
 	</ul>
 
-	<p>These are some of the contributing factors for ... </p>
-
+	<p>These are some of the contributing factors for a need of special treatment during training the prior. Specifically, for problem 1., the eikonal loss is added in the loss minimization 
+	   step as already explained. For issues, 2.,3. what is needed to be done is to obtain a first model from the prior with no shoulders or hair and then use the H3D-Net dataset to finetune it.  </p>
 
 	<h3> Setting up Dependencies </h3>
 	<p>It is certain that setting up the github repository dependencies has been the most time consuming part of the project
 		leading to much time delay, since one cannot move on to the next task if the dependencies part is not completed.
-		DeepSDF requiered four main packages to be installed to perform the training. The four packages are eigen, nanoflann, CLI11 and Pangolin. </p>
+		DeepSDF required four main packages to be installed to perform the training. The four packages are eigen, nanoflann, CLI11 and Pangolin. </p>
 	<p>We believe that if one wants to train DeepSDF, he must set up the dependecies with the least hurdle as possible. Hence, the step by step building process of the requiered packages are displayed below. If you follow the steps in the following order, one should be able to successfully build DeepSDF inside a Deep Learning VM instance of Google Cloud Platform.</p>
 	<h4>Eigen</h4>	
 	<ul>
@@ -309,28 +314,68 @@
 		<li><code>cmake --build . </code></li>
 		<li><code>sudo make install </code></li>
 	</ul>
+	<p> An additional challenge during setting up the dependencies was the Linux Debian version of the cloud cirtual machine from 10 to 11. Due to the previous version
+	    some libraries weren't able to be upgraded. The upgrading of Debian required some rebooting and redefining several settings which took some time to find out.
+	    After all these problems were solved we were able to now run the preprocessing, training and evaluation code of DeepSDF <a href="#D_SDF_repo">[4]</a>.  </p>	
 		
-	
-				
-				
 	<h3> Data Pre-processing</h3>
-	<p> The aim of pre-processing the data in the DeepSDF reproduction is the input of .obj files and the output of .npz
-		data type samples.</p>
+	<p> The aim of pre-processing the data in the DeepSDF reproduction is the input of <code>.obj</code> files and the output of <code>.npz</code> data type samples.</p>
+	<p> The time delay we ran into due to the difficulties of setting up the dependency libraries on Google cloud didn't allow us to totally implement DeepSDF.
+	    Additionally, we spent more time initially, on making IDR work, therefore, towards the deadline we weren't able to actually run the preprocessing for all the 
+	    10.000 samples which we had produced based on the FLAME model. The reason for that was the time constraint. Just the preprocessing step of the DeepSDF model, takes approximately 
+	    from 1-5min./sample to complete, multiplied by 10.000 samples gives a minimum of ~160 hours, alternatively almost 6 days(minimum) just for the preprocessing step to be completed. At the time 
+	    we were able to run DeepSDF on Cloud we didn't have this amount of time. Therefore, we decided to implement a smaller sample size just for illustration of the preprocessed results. We chose a subsample of only 30 '.obj'
+	    files and sent them through the preprocessing step. Since we didn't want to spend our Google cloud credits on something that we wouldn't eventually use further, we just ran the preprocessing step as follows, 
+	    based on the given example on <a href="#D_SDF_repo">[4]</a>.:/<p>
+	    <li><code>python preprocess_data.py --data_dir data --source ./FLAME/flame_dataset  --name flame_dataset --split examples/splits/train_all.json --skip</code></li>
+	<p> The pre-processing step wasn't usable for our case exactly as provided in the github DeepSDF repo, hence, we created the script named 'organizeFiles.py', which moves automatically the files that need to be pre-processed (.obj)
+	into the appropriate directories and additionally, it outputs the <code>train_all.json</code> file. This <code>.json </code> file is made such that is contains the folder directory for each
+	FLAME <code>.obj</code> file, in analogy to the provided example used in he github repository <code>sv2_sofas_train.json </code>  </p>
+
+	<h3> Training the prior </h3>
+	<p> As already explained, there was no available time for running preprocessing and training for thousabnds of samples, thus, there was no training step implemented, although 
+	if there would be time it would be perfectly possible as for the preprocessing. Consequently, no evaluation results either exist.
+
+	<h3> Results </h3>
+	<p> After running the preprocessing step as descrbed above for the <code>.obj</code> FLAME samples, we successfully get their corresponding pre-processed <code>.npz</code> version. </p>
+	<div class="oneimg">
+		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/Preprocessing%20output.PNG"
+			alt="Snow" / width ='500' >
+		Figure.4 DeepSDF pre-processing results
+	</div>
 
 	<h2>2. Reproduction of Prior aided-IDR </h2>
+	The reproduction of the prior-aided IDR model will be presented into two parts. First, we present the reproduction of the IDR model and then, we present how
+	the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net architecture. 
 
 	<h3> Training Dataset</h3>
 
 	<h3> Setting up Dependencies </h3>
 
 	<h3> Data Pre-processing</h3>
-
+	
+	#############################################################################
+	###### TODO: Add section of how to combine the prior with IDR to get H3D-Net 
+ 	#############################################################################
 		
-		<p> I hate my lifE</p>
+	<h3>Results</h3> 
+	The following results correspond to the reproduction of the IDR model using 3, 4 and 8 views as input 2-D images, respectively. 
+	<div class="oneimg">
+		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR_results/FINAL_3_4_8views.png"
+			alt="Snow" / width ='500' >
+		Figure.4 IDR reproduction results
+	</div>
+	##########################################################
+	############## TODO: Add corresponding ground truth images
+	##########################################################
 
-    <p> this is yohan  </p>
+	<h2> TODO: Conclusions </h2>
 
-
+	<h2> Contributions </h2>
+	<li> Yohan</li>
+	<li> Manos</li>
+	<li> Ioanna Chanopoulou:  </li>
+	
 
 	<div class="references">
 		<h2> References</h2>
@@ -341,6 +386,14 @@
 		<p id="Lior">
 			[2] Lior Yariv, Yoni Kasten, Dror Moran, Meirav Galun, Matan Atzmon, Basri Ronen, and Yaron Lipman.
 			Multiview neural surface reconstruction by disentangling geometry and appearance. NeurIPS, 33, 2020.
+		</p>
+		
+		<p id="H3D-Net">
+			[3] https://github.com/Rubikplayer/flame-fitting
+		</p>
+		
+		<p id="D_SDF_repo">
+		      [4] https://github.com/facebookresearch/DeepSDF
 		</p>
 
 		<p id="FLAME">
@@ -354,3 +407,4 @@
 </body>
 
 </html>
+
