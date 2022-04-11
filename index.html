@@ -183,7 +183,7 @@
 		</li>
 		<li>the camera parameters</li>
 		<li>a wide set of lighting conditions and materials, usingn a neural renderer, which actually represents the
-			realistic appearances of the objects</li>
+		realistic appearances of the objects</li>
 	</ol><\p>
 	<p>
 		The <b>training data</b> is actually real world 2D images of objects of multiple views (approximately 60 views).
@@ -204,15 +204,14 @@
 		All of these definitions are visually inspected on Figure.3. 
 		<div class="oneimg">
 		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
-			alt="Snow" / width ='50' height ='250'>
+			alt="Snow" / width ='50' >
 		Figure.3 Notation Definitions
 		</div>
 		Nevertheless, we can calculate the intersection point, x as:
 		<p class="mjax">
 		         \begin{equation}  
-			x = c + tv - \frac{v}{\nabla{f_0}\prodv_0f(c+tv)}
-		         \end{equation}
-		<\p>
+			x = c + tv - \frac{v}{\nabla{f_0} v_0f(c+tv)}
+		         \end{equation}<\p>
 		In conclusion, the IDR model can be illustrated as follows:
 		<div class="oneimg">
 		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDR_architecture.PNG"
@@ -232,14 +231,15 @@
 		         \begin{equation}  
 				L_{Eik} = \sum_{x_k \in P_v}(|| \nabla{F_{z,\theta}(x_k)}_x|| - 1)^2
 		         \end{equation}
+		</p>
 		where xk is the input and Pv a suset of points taken from a volume containing the scene. 
-		<\p>
+		
 		The paper in <ahref="#H3D-Net">[3] </a> is actually based on <ahref="#IGR">[4] </a> for this implementation. 
 		
 		Furthermore, H3D-Net is described by the following architecture
 		<div class="oneimg">
 		<img src="https://github.com/IoannaChano/IoannaChano.github.io/blob/main/images/H3DNet.PNG?raw=true"
-			alt="Snow" / width ='200' height ='300'>
+			alt="Snow" / width ='200' >
 		Figure.5 H3D-Net architecture 
 		</div>
 		In Figure.5, we see that the architecture of H3D-Net is highly similar with the one of IDR with the difference that here, the network that learns the
