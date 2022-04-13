@@ -187,22 +187,26 @@
 	</div>
 
 
-	<h2 id="intro"> #### TODO :Introduction</h2>
-	<p> Recently, lots of learning methods have attempted to convert 2-D images into 3-D shapes. The developed
-		approaches involve two categories: model-based and model-free.
-		The paper with title 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction' <ahref="#H3D-Net">[3] </a> aims to
-			reconstruct 3-D head
-			surfaces denoted by <i>S</i>, combining the advantages of model-based and model-free approaches and existing
-			work
-			in <a href="#Jeong">[1]</a> and Implicit Differentiable Renderer (IDR) <ahref="#Lior">[2] </a>.
-				This H3D-Net approach aims at estimating the full head shape using given just 3 2-D images. In order to
-				achieve this reduced amount of input images,
-				it is needed to include prior knowledge based on DeepSDF<a href="#Jeong">[1]</a>. DeepSDF is trained
-				using thousands of raw incomplete scans
-				to learn the Signed Distance Functions (SDF), which represent the head geometry <a
-					href="#Jeong">[1]</a>.In the following sections, the employed H3D-Net
-				method will be further analysed and then, the reproducibility results are going to be presented.
-	</p>
+	<h2 id="intro"> Introduction</h2>
+
+	<p>One of the largest fields of interest for deep learning nowadays is regarding the 3D object reconstruction from
+		2D images. From art analysis and restoration to pure visual object description in 3D, deep learning provides
+		endless possibilities to what is attainable. In this project, an attempt is made to reconstruct the paper
+		H3D-Net (presented in the title) which pertains to the 3D head reconstruction from only a limited number of
+		2D images. Due to the intrinsic complexity of this field, this paper picks upon previous work and effectively
+		combines it to achieve high-fidelity head reconstructions. In order to do so, the paper fundamentally touches
+		upon the implicit representation of surfaces for which priors able to describe a general probabilistic shape
+		are available. The key concept of the paper, also referred to as model-based approach, relies on using such
+		work as a prior for the basic 3D head reconstruction and rendering. It is therefore logical to split the work
+		into two basic sections:</p>
+	<p> - The pretrained model describing a general probabilistic shape of the human head (prior) <a href="#Jeong">[1]</a><br />
+		- The network that represents the geometry as well as the implicit renderer (implicit differentiable rendering) <a href="#Lior">[2] </a> </p>
+	<p>Both of these sections are using a certain network as their basis; the DeepSDF paper used as the prior and the
+		IDR for the geometry representation and rendering. These two papers were used as reference throughout the
+		project and will thus be used as the structural basis of this blog too. Initially, the method of both papers
+		will be presented and the reproduction attempts will then be described. This blog also focuses on the technical
+		problems associated with the reproduction, giving insightful information for anyone wishing to replicate the
+		reconstruction.</p>
 
 	<h2 id="methodintheory">Method in Theory</h2>
 	<p>As already mentioned H3D-Net is based on training a prior, namely the already existing DeepSDF <a
@@ -239,7 +243,7 @@
 	<div class="oneimg">
 		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/StructureDeepSDF.png"
 			alt="Snow" />
-		Figure.1 Input (left) and Output (right) of the DeepSDF network.
+		Figure.2 Input (left) and Output (right) of the DeepSDF network.
 	</div>
 
 	<h3 id="idr"> 2. IDR </h3>
