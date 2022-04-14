@@ -8,7 +8,7 @@
 
 	body {
 		background-color: initial;
-		margin: 0 64px 0 64px;
+		margin: 0 auto;
 	}
 
 
@@ -32,7 +32,7 @@
 	p {
 		color: initial;
 		font-family: Arial, Helvetica, sans-serif;
-		text-align: justify;
+		text-align: center;
 	}
 
 	/* Table Of Contents */
@@ -188,9 +188,9 @@
 			</li>
 			<li><a href="#conclusions">4 Conclusions</a></li>
 		</ul>
-	</div>
+	</div align="center">
 
-
+        
 	<h2 id="intro"> Introduction</h2>
 
 	<p>One of the largest fields of interest for deep learning nowadays is regarding the 3D object reconstruction from
@@ -547,22 +547,59 @@
 
 				<h2 id="aidedidr">2. Reproduction of Prior aided-IDR </h2>
 				The reproduction of the prior-aided IDR model will be presented into two parts. First, we present the
-				reproduction
-				of the IDR model and then, we present how
-				the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net
+				reproduction of the IDR model and then, we present how the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net
 				architecture.
+                                Two repositories accessible on github are used for this task, one for the actual training named IDR and one name H3DS for retrieving the 2D images.
 
 				<h3> Training Dataset</h3>
+                                <p> In order to perform the full head reconstruction, a private dataset made by the authors of the paper containing high resolution full head 3D texture 
+				    scans and 360 &deg images with associated ground truth camera poses and ground truth masks was retrieved. The dataset can be accessed by contacting the authors
+				    to be granted a token. The token can then used to unzip the file containing the images and ground truths objects. The zip file can be downloaded on CrisalixSA/h3ds repository.
+				    The dataset consist of 10 individual for which 50-60 pictures with their associated masks and camera poses are available. A directory containing a 60 images with their respective masks and camera poses 
+				    can then be moved to IDR/data directory. </p>
+				    
 
 				<h3> Setting up Dependencies </h3>
+                                <p> We first cloned the IDR repository containing the source code into a folder called <code>IDR<code>:
+                                     <ul>
+					<li><code>git clone https://github.com/eduardramon/idr.git</code></li>
+                                    </ul>
+                                    We then create a conda environment with the requiered dependencies to be able to use the source code:
+				     <ul>
+					<li><code>conda env create -f environment.yml</code></li>
+					<li><code>conda activate idr</code></li>
+                                    </ul>
+                                 The source codes inside the repositories are now ready to be run for training and evaluation.</p>
 
-				<h3> Data Pre-processing</h3>
 
-				#############################################################################
-				###### TODO: Add section of how to combine the prior with IDR to get H3D-Net
-				#############################################################################
+				<h3>Training IDR</h3>
+					<p>
+					
+				The IDR repository has been tailored for the DTU dataset. Hence, we designed several configuration files defining the architecture models, hyperparameter models, and path to the H3DS sample dir inside IDR.
+				Below is an example of such configuration file. The <code>train_h3dnet_3_views.conf</code> file is placed into <code>IDR/code/confs/</code>.
+				<div class="oneimg" style="max-width: 300px;">
+				<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/fileconf.PNG"
+					alt="Snow">
+				Figure.10 Configuration file for 3 views (3 2D images).
+			        </div>	
+				The training is then performed in the background for i views with the following commands:
+				 <ul>
+					<li><code>cd ./</code></li>
+					<li><code>nohup python training/exp_runner.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>
+					
+                                    </ul>
+					
+
+				
 
 				<h3>Results</h3>
+					
+				The meshed surface is retrieved with the following command:
+				<ul>
+					<li><code>cd ./</code></li>
+					<li><code>nohup python evaluation/eval.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>
+					
+                                </ul>
 				The following results correspond to the reproduction of the IDR model using 3, 4 and 8 views as input
 				2-D images,
 				respectively.
@@ -574,9 +611,11 @@
 				##########################################################
 				############## TODO: Add corresponding ground truth images
 				##########################################################
+        <h3>Training Prior aided-IDR
 
-				<h2 id="conclusions"> Conclusions </h2>
+        <h2 id="conclusions"> Conclusions </h2>
 				Our team eventually, reproduced successfully the IDR model without a prior for multiple sample sizes (3,4, 8 and 16 views). The results we got are
+
 
 				<h2> Contributions </h2>
 				<li> Yohan</li>
@@ -623,6 +662,7 @@
 
 
 				</div>
+					
 
 </body>
 
