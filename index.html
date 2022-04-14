@@ -173,8 +173,8 @@
 
 	<p><em>Paper reproduced by:</em></p>
 	<p>Ioanna Chanopoulou&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i.chanopoulou@gmail.com</p>
-	<p>Manos Vretoudakis&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mvretoudakis@gmail.com</p>
-	<p>Yohan Le Gars&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pppp@gmail.com</p>
+	<p>Manos Vretoudakis&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mvretoudakis@gmail.com</p>
+	<p>Yohan Le Gars&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; yohan.legars@gmail.com</p>
 	<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
 
 	<div id="toc_container">
@@ -391,17 +391,17 @@
 					<div class="column">
 						<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp.PNG?fbclid=IwAR23U9w5wZGSjZReKUUoa2jE6NoXkeCK5eo_OP7wxz2wbNc4ALq721Wj6W8"
 							alt="Snow">
-						Figure.1 FLAME model 3D head(<i>.obj</i> data type)
+						Figure.6 FLAME model 3D head(<i>.obj</i> data type)
 					</div>
 					<div class="column">
 						<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_mesh.png"
 							alt="Forest">
-						Figure.2 Mesh view of the 3D head
+						Figure.7 Mesh view of the 3D head
 					</div>
 					<div class="column">
 						<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_notClosed.png"
 							alt="Mountains">
-						Figure.3 Open area on the bottom of the 3D head shape
+						Figure.8 Open area on the bottom of the 3D head shape
 					</div>
 				</div>
 				<p>As we can see the training data are characterized by:</p>
@@ -539,8 +539,7 @@
 					thousabnds of
 					samples, thus, there was no training step implemented, although
 					if there would be time it would be perfectly possible as for the preprocessing. Consequently, no
-					evaluation
-					results either exist.
+					evaluation results either exist. </p>
 
 				<h3> Results </h3>
 				<p> After running the preprocessing step as descrbed above for the <code>.obj</code> FLAME samples, we
@@ -549,15 +548,20 @@
 				<div class="oneimg" style="max-width: 700px;">
 					<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/Preprocessing%20output.PNG"
 						alt="Snow">
-					Figure.4 DeepSDF pre-processing results
+					Figure.9 DeepSDF pre-processing results
 				</div>
+                                  <h3>DeepSDF alternative
+	<p>Instead of using DeepSDF, we tried to set up the implicit geometric regularization (IGR) repository wich uses the eikonal equation in order to be able to learn from nonwatertight meshes. We made a dataloader python file as well 
+        as creating a json file to communicate with the data in a similar fashion to DeepSDF. Unfortunately, this last minute endeavor brought no successful results due to some unresolved errors.</p>
 
 				<h2 id="aidedidr">2. Reproduction of Prior aided-IDR </h2>
-				The reproduction of the prior-aided IDR model will be presented into two parts. First, we present the
+                                Because of the issues run with DeepSDF, the training of the prior aided IDR has not been performed. Instead, the IDR without prior has been trained for several
+                                number of input images like presented in the paper.
+				The reproduction of the IDR model will therefore be presented into two parts. First, we present the acquirement of the dataset and the setting up of the dependecies. Then, we show we 
 				reproduction of the IDR model and then, we present how the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net
 				architecture.
                                 Two repositories accessible on github are used for this task, one for the actual training named IDR and one name H3DS for retrieving the 2D images.
-
+                                
 				<h3> Training Dataset</h3>
                                 <p> In order to perform the full head reconstruction, a private dataset made by the authors of the paper containing high resolution full head 3D texture 
 				    scans and 360 &deg images with associated ground truth camera poses and ground truth masks was retrieved. The dataset can be accessed by contacting the authors
@@ -592,8 +596,7 @@
 				The training is then performed in the background for i views with the following commands:
 				 <ul>
 					<li><code>cd ./</code></li>
-					<li><code>nohup python training/exp_runner.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>
-					
+					<li><code>nohup python training/exp_runner.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>	
                                  </ul>
 					
 
@@ -612,19 +615,21 @@
 				<div class="oneimg" style="max-width: 900px;">
 					<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR_results/FINAL_3_4_8views.png"
 						alt="Snow" />
-					Figure.4 IDR reproduction results for 3, 4 and 8 input views
+					Figure.11 IDR reproduction results for 3, 4 and 8 input views
 				</div>
 				In order to obtain quantitative results, ICP algorithm can be used to align the reconstructed meshes with the ground truths mesh. Landmarks must be manually
-                                placed on the eyes, nose base and tip, right and left side of lips of the reconstructed meshes to apply ICP. However, due to time constraints, the aforementioned step has not been performed. Hence There is no quantitative results to show.
+                                placed on the eyes, base and tip of the nose, right and left side of lips of the reconstructed meshes to apply ICP. Afterwards, the Chamfer distance can be computed for all the vertices of the reconstruction. 
+                                However, due to time constraints, the aforementioned step has not been performed. Hence there is no quantitative results to show.
+
 				
-        <h3>Training Prior aided-IDR
+      
 
         <h2 id="conclusions"> Conclusions </h2>
 				Our team eventually, reproduced successfully the IDR model without a prior for multiple sample sizes (3,4, 8 and 16 views). The results we got are
 
 
 				<h2> Contributions </h2>
-				<li> Yohan: setting up IDR, DeepSDF, google cloud platform, training, evaluation, IDR and DeepSDF reproduction sections in blog, poster.</li>
+				<li> Yohan: setting up IDR, DeepSDF, google cloud platform, data preprocessing, training, evaluation, IDR and DeepSDF reproduction sections in blog, poster.</li>
 				<li> Manos</li>
 				<li> Ioanna Chanopoulou: </li>
 
