@@ -6,9 +6,16 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
+	
 	body {
-		background-color: initial;
-		margin: 0 auto;
+               background: #555;
+              }
+
+	.content {
+	  max-width: 500px;
+	  margin: auto;
+	  background: white;
+	  padding: 10px;
 	}
 
 
@@ -560,7 +567,7 @@
 				    
 
 				<h3> Setting up Dependencies </h3>
-                                <p> We first cloned the IDR repository containing the source code into a folder called <code>IDR<code>:
+                                <p> We first cloned the IDR repository containing the source code into a folder called <code>IDR</code>:
                                      <ul>
 					<li><code>git clone https://github.com/eduardramon/idr.git</code></li>
                                     </ul>
@@ -578,7 +585,7 @@
 				The IDR repository has been tailored for the DTU dataset. Hence, we designed several configuration files defining the architecture models, hyperparameter models, and path to the H3DS sample dir inside IDR.
 				Below is an example of such configuration file. The <code>train_h3dnet_3_views.conf</code> file is placed into <code>IDR/code/confs/</code>.
 				<div class="oneimg" style="max-width: 300px;">
-				<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/fileconf.PNG"
+				<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/fileconf.png"
 					alt="Snow">
 				Figure.10 Configuration file for 3 views (3 2D images).
 			        </div>	
@@ -587,7 +594,7 @@
 					<li><code>cd ./</code></li>
 					<li><code>nohup python training/exp_runner.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>
 					
-                                    </ul>
+                                 </ul>
 					
 
 				
@@ -600,17 +607,16 @@
 					<li><code>nohup python evaluation/eval.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>
 					
                                 </ul>
-				The following results correspond to the reproduction of the IDR model using 3, 4 and 8 views as input
-				2-D images,
-				respectively.
+				The following results correspond to the reproduction of the IDR model using 3, 4, 8 and 16 views as input
+				2-D images, respectively.
 				<div class="oneimg" style="max-width: 900px;">
 					<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR_results/FINAL_3_4_8views.png"
 						alt="Snow" />
 					Figure.4 IDR reproduction results for 3, 4 and 8 input views
 				</div>
-				##########################################################
-				############## TODO: Add corresponding ground truth images
-				##########################################################
+				In order to obtain quantitative results, ICP algorithm can be used to align the reconstructed meshes with the ground truths mesh. Landmarks must be manually
+                                placed on the eyes, nose base and tip, right and left side of lips of the reconstructed meshes to apply ICP. However, due to time constraints, the aforementioned step has not been performed. Hence There is no quantitative results to show.
+				
         <h3>Training Prior aided-IDR
 
         <h2 id="conclusions"> Conclusions </h2>
@@ -618,7 +624,7 @@
 
 
 				<h2> Contributions </h2>
-				<li> Yohan</li>
+				<li> Yohan: setting up IDR, DeepSDF, google cloud platform, training, evaluation, IDR and DeepSDF reproduction sections in blog, poster.</li>
 				<li> Manos</li>
 				<li> Ioanna Chanopoulou: </li>
 
