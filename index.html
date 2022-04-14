@@ -8,7 +8,7 @@
 
 	
 	body {
-               background: #400;
+               background: #379;
               }
 
 	.content {
@@ -67,8 +67,8 @@
 		font-family: Consolas, "courier new";
 		color: black;
 		background-color: #f1f1f1;
-		padding: 4px;
-		font-size: 105%;
+		padding: 2px;
+		font-size: 90%;
 	}
 
 	.row {
@@ -368,6 +368,7 @@
 					a pretrained model based on DeepSDF <a href="#Jeong">[1] </a>. </p>
 
 				<h2 id="deepsdfprior">1. Reproduction of DeepSDF prior </h2>
+<p>
 				Based on the github repository in <a href="#D_SDF_repo">[5]</a> the steps to get DeepSDF are to
 				preprocess the
 				training data, then run the corresponding script
@@ -375,6 +376,7 @@
 				these steps
 				are reproduced for a training set we produced
 				and our work methodology is described along with the challenges and issues we encountered on the way.
+</p>
 
 				<h3> Training Dataset</h3>
 				<p> The original dataset used to train the prior, in the paper, wasn't available for public use - due to
@@ -550,18 +552,19 @@
 						alt="Snow">
 					Figure.9 DeepSDF pre-processing results
 				</div>
-                                  <h3>DeepSDF alternative
+<h3>DeepSDF alternative</h3>
 	<p>Instead of using DeepSDF, we tried to set up the implicit geometric regularization (IGR) repository wich uses the eikonal equation in order to be able to learn from nonwatertight meshes. We made a dataloader python file as well 
         as creating a json file to communicate with the data in a similar fashion to DeepSDF. Unfortunately, this last minute endeavor brought no successful results due to some unresolved errors.</p>
 
 				<h2 id="aidedidr">2. Reproduction of Prior aided-IDR </h2>
+<p>
                                 Because of the issues run with DeepSDF, the training of the prior aided IDR has not been performed. Instead, the IDR without prior has been trained for several
                                 number of input images like presented in the paper.
 				The reproduction of the IDR model will therefore be presented into two parts. First, we present the acquirement of the dataset and the setting up of the dependecies. Then, we show we 
 				reproduction of the IDR model and then, we present how the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net
 				architecture.
                                 Two repositories accessible on github are used for this task, one for the actual training named IDR and one name H3DS for retrieving the 2D images.
-                                
+</p> 
 				<h3> Training Dataset</h3>
                                 <p> In order to perform the full head reconstruction, a private dataset made by the authors of the paper containing high resolution full head 3D texture 
 				    scans and 360 &deg images with associated ground truth camera poses and ground truth masks was retrieved. The dataset can be accessed by contacting the authors
@@ -603,6 +606,7 @@
 				
 
 				<h3>Results</h3>
+<p>
 					
 				The meshed surface is retrieved with the following command:
 				<ul>
@@ -623,25 +627,30 @@
 
 				
       
-
+</p>
         <h2 id="conclusions"> Conclusions </h2>
-				Our team eventually, reproduced successfully the IDR model without a prior for multiple sample sizes (3,4, 8 and 16 views). The results we got are similar
-				to the ones in the original paper. Our main conclusions with the challenges we faced and didn't allow us to completely reproduce the H3D-Net are: 
-				<ul>
-					<li> Setting up dependencies for the DeepSDF prior coupled with Google Cloud was a major challenge. Virtual Machine compatibility and right versions	
-					 has been ver time consuming</li>
-					<li> Pre-processing thousand(~10000) of samples for the DeepSDF prior takes ~ 800 hours </li>
-					<li> After training the prior , the model needs to be fine-tuned to account for the missing information for the hair and shoulders</li>
-					<li> IGR repo should have been used instead of DeepSDF to account for non-watertight meshes</li>
-				<ul>
-				Finally, our main conclusion concerns the importance of a reproducability project. It gives a great insight on the internal steps, not so trivial ones, 
-				taken to lead to the published project, gives a deeper understanding of the existing work and one can also evaluate this work and even checkif the results are 
-				reliable. Patience during a reproduction that lacks important guidance on setting up dependencies and needed data (e.g. FLAME) is a virtue.
+<p>
 
-				<h2> Contributions </h2>
-                                <li> Yohan Legars: setting up IDR, DeepSDF, IGR, google cloud platform, training, evaluation, IDR and DeepSDF reproduction sections in blog, poster.</li>
-				<li> Manos Vretoudakis: debugging for DeepSDF, evaluating IDR for 4 views, reporting, poster </li>
-				<li> Ioanna Chanopoulou:  dependencies for DeepSDF on Google cloud, running and debugging DeepSDF, producing around 10000 samples with FLAME model, setting up the blog, reporting </li>
+
+Our team eventually, reproduced successfully the IDR model without a prior for multiple sample sizes (3,4, 8 and 16 views). The results we got are similar
+to the ones in the original paper. Our main conclusions with the challenges we faced and didn't allow us to completely reproduce the H3D-Net are: 
+<ul>
+	<li> Setting up dependencies for the DeepSDF prior coupled with Google Cloud was a major challenge. Virtual Machine compatibility and right versions	
+	 has been ver time consuming</li>
+	<li> Pre-processing thousand(~10000) of samples for the DeepSDF prior takes ~ 800 hours </li>
+	<li> After training the prior , the model needs to be fine-tuned to account for the missing information for the hair and shoulders</li>
+	<li> IGR repo should have been used instead of DeepSDF to account for non-watertight meshes</li>
+<ul>
+Finally, our main conclusion concerns the importance of a reproducability project. It gives a great insight on the internal steps, not so trivial ones, 
+taken to lead to the published project, gives a deeper understanding of the existing work and one can also evaluate this work and even checkif the results are 
+reliable. Patience during a reproduction that lacks important guidance on setting up dependencies and needed data (e.g. FLAME) is a virtue.
+</p>
+	
+<h2> Contributions </h2>
+
+<li> Yohan Legars: setting up IDR, DeepSDF, IGR, google cloud platform, training, evaluation, IDR and DeepSDF reproduction sections in blog, poster.</li>
+<li> Manos Vretoudakis: debugging for DeepSDF, evaluating IDR for 4 views, reporting, poster </li>
+<li> Ioanna Chanopoulou:  dependencies for DeepSDF on Google cloud, running and debugging DeepSDF, producing around 10000 samples with FLAME model, setting up the blog, reporting </li>
 
 
 				<div class="references">
