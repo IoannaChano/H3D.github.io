@@ -547,14 +547,30 @@
 
 				<h2 id="aidedidr">2. Reproduction of Prior aided-IDR </h2>
 				The reproduction of the prior-aided IDR model will be presented into two parts. First, we present the
-				reproduction
-				of the IDR model and then, we present how
-				the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net
+				reproduction of the IDR model and then, we present how the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net
 				architecture.
+                                Two repositories accessible on github are used for this task, one for the actual training named IDR and one name H3DS for retrieving the 2D images.
 
 				<h3> Training Dataset</h3>
+                                <p> In order to perform the full head reconstruction, a private dataset made by the authors of the paper containing high resolution full head 3D texture 
+				    scans and 360 &deg images with associated ground truth camera poses and ground truth masks was retrieved. The dataset can be accessed by contacting the authors
+				    to be granted a token. The token can then used to unzip the file containing the images and ground truths objects. The zip file can be downloaded on CrisalixSA/h3ds repository.
+				    The dataset consist of 10 individual for which 50-60 pictures with their associated masks and camera poses are available. A directory containing a 60 images with their respective masks and camera poses 
+				    can then be moved to IDR/data directory. </p>
+				    
 
 				<h3> Setting up Dependencies </h3>
+                                </p> We first cloned the IDR repository containing the source code into a folder called <code>IDR<code>:
+                                     <ul>
+					<li><code>git clone https://github.com/eduardramon/idr.git</code></li>
+                                    </ul>
+                                    We then create a conda environment with the requiered dependencies to be able to use the source code:
+				     <ul>
+					<li><code>conda env create -f environment.yml</code></li>
+					<li><code>conda activate idr</code></li>
+                                    </ul>
+                                 The source codes inside the repositories are now ready to be run
+
 
 				<h3> Data Pre-processing</h3>
 
