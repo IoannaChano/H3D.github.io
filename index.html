@@ -149,6 +149,43 @@
 		color: DodgerBlue;
 		text-decoration: underline;
 	}
+
+	.contSidebar {
+		padding: 8px;
+		max-height: 50%;
+		max-width: 200px;
+		position: fixed;
+		left: calc(50% - 610px);
+		top: 32px;
+		border-right: 2px solid black;
+		z-index: 100;
+		background-color: white;
+		transition: all 0.4s;
+		/* border-bottom: 2px solid black; */
+	}
+
+	.contSidebar:hover {
+		max-width: 800px;
+		width: max-content;
+		transform: scale(1.02);
+		box-shadow: 3px 2px 4px 0.4px rgb(228, 228, 228);
+	}
+
+	.contSidebar a {
+		color: black;
+	}
+
+
+	.contSidebar ul {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.contSidebar li {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
 </style>
 <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
@@ -194,7 +231,7 @@
 			&nbsp;
 			&nbsp; &nbsp;</p> -->
 
-		<div id="toc_container">
+		<!-- <div id="toc_container">
 			<h2 class="toc_title">Contents</h2>
 			<ul class="toc_list">
 				<li><a href="#intro">1 Introduction</a></li>
@@ -212,7 +249,7 @@
 				</li>
 				<li><a href="#conclusions">4 Conclusions</a></li>
 			</ul>
-		</div>
+		</div> -->
 
 
 		<h2 id="intro"> #### TODO :Introduction</h2>
@@ -672,7 +709,27 @@
 
 					</div>
 
+
+					<div class="contSidebar">
+						<ul>
+							<li><a href="#intro">1 Introduction</a></li>
+							<li><a href="#methodintheory">2 Method in Theory</a>
+								<ul>
+									<li><a href="#deepsdf">2.1 DeepSDF</a></li>
+									<li><a href="#idr">2.2 IDR</a></li>
+								</ul>
+							</li>
+							<li><a href="#reprh3d">3 Reproduction of H3D-Net</a>
+								<ul>
+									<li><a href="#deepsdfprior">3.1 Reproduction of DeepSDF prior</a></li>
+									<li><a href="#aidedidr">3.2 Reproduction of Prior aided-IDR</a></li>
+								</ul>
+							</li>
+							<li><a href="#conclusions">4 Conclusions</a></li>
+						</ul>
+					</div>
 	</div>
+
 
 </body>
 
