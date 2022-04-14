@@ -8,12 +8,15 @@
 
 	body {
 		background-color: initial;
-		margin: 0 64px 0 64px;
+		margin: 0;
 	}
 
 	.paper {
-		max-width: 760px;
+		max-width: 766px;
+		padding-left: 64px;
+		padding-right: 64px;
 		margin: auto;
+		margin-top: 32px;
 	}
 
 	h1 {
@@ -153,12 +156,12 @@
 	.contSidebar {
 		padding: 8px;
 		max-height: 50%;
-		max-width: 200px;
+		max-width: 120px;
 		position: fixed;
-		left: calc(50% - 610px);
-		top: 32px;
+		left: calc(50% - 532px);
+		top: 36px;
 		border-right: 2px solid black;
-		z-index: 100;
+		z-index: 10;
 		background-color: white;
 		transition: all 0.4s;
 		/* border-bottom: 2px solid black; */
@@ -168,7 +171,7 @@
 		max-width: 800px;
 		width: max-content;
 		transform: scale(1.02);
-		box-shadow: 3px 2px 4px 0.4px rgb(228, 228, 228);
+		box-shadow: 4px 3px 3px 0.2px rgba(0, 0, 0, 0.075);
 	}
 
 	.contSidebar a {
@@ -177,8 +180,15 @@
 
 
 	.contSidebar ul {
+		padding-left: 0;
 		margin-top: 0;
 		margin-bottom: 0;
+	}
+
+	.contSidebar ul ul {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-left: 1em;
 	}
 
 	.contSidebar li {
@@ -732,5 +742,17 @@
 
 
 </body>
+
+<script>
+	document.addEventListener('scroll', function (e) {
+		var x = document.getElementsByClassName("contSidebar")[0];
+		if (window.scrollY > 0) {
+			x.style.top = "calc(50% - " + (x.offsetHeight / 2).toString() + "px)";
+		}
+		else x.style.top = "36px";
+	});
+
+
+</script>
 
 </html>
