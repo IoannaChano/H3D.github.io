@@ -35,6 +35,7 @@
 		color: initial;
 		font-family: Arial, Helvetica, sans-serif;
 		margin-top: 50px;
+		padding-bottom: 12px;
 		border-bottom: 1px solid gainsboro;
 	}
 
@@ -163,7 +164,7 @@
 		border-right: 2px solid black;
 		z-index: 10;
 		background-color: white;
-		transition: all 0.4s;
+		/* transition: all 0.4s; */
 		/* border-bottom: 2px solid black; */
 	}
 
@@ -457,7 +458,7 @@
 			IDR model <a href="#Lior">[2]</a> with
 			a pretrained model based on DeepSDF <a href="#Jeong">[1]</a>. </p>
 
-		<h2 id="deepsdfprior">1. Reproduction of DeepSDF prior </h2>
+		<h3 id="deepsdfprior">1. Reproduction of DeepSDF prior </h3>
 		<p>
 			Based on the github repository in <a href="#D_SDF_repo">[5]</a> the steps to get DeepSDF are to
 			preprocess the
@@ -675,7 +676,7 @@
 			Unfortunately,
 			this last minute endeavor brought no successful results due to some unresolved errors.</p>
 
-		<h2 id="aidedidr">2. Reproduction of Prior aided-IDR </h2>
+		<h3 id="aidedidr">2. Reproduction of Prior aided-IDR </h3>
 		<p>
 			Because of the issues run with DeepSDF, the training of the prior aided IDR has not been
 			performed.
@@ -737,7 +738,7 @@
 			Below is an example of such configuration file. The <code>train_h3dnet_3_views.conf</code> file
 			is
 			placed into <code>IDR/code/confs/</code>.
-		<div class="oneimg" style="max-width: 300px;">
+		<div class="oneimg" style="max-width: 500px;">
 			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/fileconf.png"
 				alt="Snow">
 			Figure.10 Configuration file for 3 views (3 2D images).
@@ -895,14 +896,91 @@
 </body>
 
 <script>
-	document.addEventListener('scroll', function (e) {
-		var x = document.getElementsByClassName("contSidebar")[0];
-		if (window.scrollY > 0) {
-			x.style.top = "calc(50% - " + (x.offsetHeight / 2).toString() + "px)";
+	function sleep(miliseconds) {
+		var currentTime = new Date().getTime();
+
+		while (currentTime + miliseconds >= new Date().getTime()) {
 		}
-		else x.style.top = "36px";
+	}
+
+	window.addEventListener('DOMContentLoaded', function (e) {
+		var sidebar = document.getElementsByClassName("contSidebar")[0];
+		var body = document.body;
+		var paper = document.getElementsByClassName("paper")[0];
+
+		var sidespace = (body.clientWidth - paper.clientWidth + 128) / 2;
+
+		if (sidespace < 158) {
+			sidebar.style.maxWidth = (sidespace - 10 - 16 - 8).toString() + "px";
+			sidebar.style.left = "calc(50% - " + ((paper.clientWidth - 128) / 2 + sidespace - 8).toString() + "px)";
+			sidebar
+		}
+		else {
+			sidebar.style.maxWidth = "120px";
+			sidebar.style.left = "calc(50% - 532px)"
+		}
+
+		sidebar.addEventListener('mouseover', function () {
+			var sidebar = document.getElementsByClassName("contSidebar")[0];
+
+			sidebar.style.transition = "all 0.4s";
+			sidebar.style.maxWidth = "max-content";
+		})
+		sidebar.addEventListener('mouseleave', function () {
+			var sidebar = document.getElementsByClassName("contSidebar")[0];
+			var body = document.body;
+			var paper = document.getElementsByClassName("paper")[0];
+
+			var sidespace = (body.clientWidth - paper.clientWidth + 128) / 2;
+
+			sidebar.style.transition = "all 0.4s";
+
+			if (sidespace < 158) {
+				sidebar.style.maxWidth = (sidespace - 10 - 16 - 8).toString() + "px";
+				sidebar.style.left = "calc(50% - " + ((paper.clientWidth - 128) / 2 + sidespace - 8).toString() + "px)";
+				sidebar
+			}
+			else {
+				sidebar.style.maxWidth = "120px";
+				sidebar.style.left = "calc(50% - 532px)"
+			}
+
+
+		})
+
+		sidebar.style.transition = "all 0.4s";
 	});
 
+	document.addEventListener('scroll', function (e) {
+		var sidebar = document.getElementsByClassName("contSidebar")[0];
+
+		sidebar.style.transition = "all 0.4s";
+		if (window.scrollY > 0) {
+			sidebar.style.top = "calc(50% - " + (sidebar.offsetHeight / 2).toString() + "px)";
+		}
+		else sidebar.style.top = "36px";
+	});
+
+	window.addEventListener('resize', function (e) {
+		var sidebar = document.getElementsByClassName("contSidebar")[0];
+		var body = document.body;
+		var paper = document.getElementsByClassName("paper")[0];
+		var sidespace = (body.clientWidth - paper.clientWidth + 128) / 2;
+
+		sidebar.style.transition = "all 0s";
+
+		if (sidespace < 158) {
+			sidebar.style.maxWidth = (sidespace - 10 - 16 - 8).toString() + "px";
+			sidebar.style.left = "calc(50% - " + ((paper.clientWidth - 128) / 2 + sidespace - 8).toString() + "px)";
+			sidebar
+		}
+		else {
+			sidebar.style.maxWidth = "120px";
+			sidebar.style.left = "calc(50% - 532px)"
+		}
+
+		sleep(33);
+	});
 
 </script>
 
