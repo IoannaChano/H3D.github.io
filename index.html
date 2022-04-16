@@ -164,7 +164,7 @@
 		border-right: 2px solid black;
 		z-index: 10;
 		background-color: white;
-		/* transition: all 0.4s; */
+		transition: all 0.4s;
 		/* border-bottom: 2px solid black; */
 	}
 
@@ -923,9 +923,10 @@
 		sidebar.addEventListener('mouseover', function () {
 			var sidebar = document.getElementsByClassName("contSidebar")[0];
 
-			sidebar.style.transition = "all 0.4s";
-			sidebar.style.maxWidth = "max-content";
+			sidebar.style.cssText = "max-width:max-width; left: " + sidebar.style.left + "; top: " + sidebar.style.top + ";";
 		})
+
+
 		sidebar.addEventListener('mouseleave', function () {
 			var sidebar = document.getElementsByClassName("contSidebar")[0];
 			var body = document.body;
@@ -933,22 +934,18 @@
 
 			var sidespace = (body.clientWidth - paper.clientWidth + 128) / 2;
 
-			sidebar.style.transition = "all 0.4s";
-
 			if (sidespace < 158) {
 				sidebar.style.maxWidth = (sidespace - 10 - 16 - 8).toString() + "px";
 				sidebar.style.left = "calc(50% - " + ((paper.clientWidth - 128) / 2 + sidespace - 8).toString() + "px)";
 				sidebar
 			}
 			else {
-				sidebar.style.maxWidth = "120px";
+				sidebar.style.cssText = "max-width:120px; left: " + sidebar.style.left + "; top: " + sidebar.style.top + ";";
 				sidebar.style.left = "calc(50% - 532px)"
 			}
 
 
 		})
-
-		sidebar.style.transition = "all 0.4s";
 	});
 
 	document.addEventListener('scroll', function (e) {
