@@ -6,18 +6,18 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
-	
 	body {
-               background: #379;
-              }
-
-	.content {
-	  max-width: 900px;
-	  margin: auto;
-	  background: white;
-	  padding: 10px;
+		background-color: initial;
+		margin: 0;
 	}
 
+	.paper {
+		max-width: 766px;
+		padding-left: 64px;
+		padding-right: 64px;
+		margin: auto;
+		margin-top: 32px;
+	}
 
 	h1 {
 		color: initial;
@@ -25,10 +25,18 @@
 		margin: 32px 0 32px 0;
 	}
 
+	.by {
+		margin-bottom: 64px;
+		color: gray;
+		text-align: justify;
+	}
+
 	h2 {
 		color: initial;
 		font-family: Arial, Helvetica, sans-serif;
 		margin-top: 50px;
+		padding-bottom: 12px;
+		border-bottom: 1px solid gainsboro;
 	}
 
 	h3 {
@@ -67,8 +75,8 @@
 		font-family: Consolas, "courier new";
 		color: black;
 		background-color: #f1f1f1;
-		padding: 2px;
-		font-size: 90%;
+		padding: 4px;
+		font-size: 105%;
 	}
 
 	.row {
@@ -145,6 +153,50 @@
 		color: DodgerBlue;
 		text-decoration: underline;
 	}
+
+	.contSidebar {
+		padding: 8px;
+		max-height: 50%;
+		max-width: 120px;
+		position: fixed;
+		left: calc(50% - 532px);
+		top: 36px;
+		border-right: 2px solid black;
+		z-index: 10;
+		background-color: white;
+		transition: all 0.4s;
+		/* border-bottom: 2px solid black; */
+	}
+
+	.contSidebar:hover {
+		max-width: 800px;
+		width: max-content;
+		transform: scale(1.02);
+		box-shadow: 4px 3px 3px 0.2px rgba(0, 0, 0, 0.075);
+	}
+
+	.contSidebar a {
+		color: black;
+	}
+
+
+	.contSidebar ul {
+		padding-left: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.contSidebar ul ul {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-left: 1em;
+	}
+
+	.contSidebar li {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
 </style>
 <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
@@ -165,21 +217,663 @@
 </head>
 
 <body>
-	<div class="content">
-	<h1 style="margin-bottom: 16px;"> Reproducibility of 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction'</h1>
-	<h2 style="margin-top: 16px; margin-bottom: 64px;"> by Eduard Ramon, Gil Triginer, Janna Escur, Albert Pumarola,
-		Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
 
-<hr />
+	<div class="paper">
+		<h1 style="margin-bottom: 16px;"> Reproducibility of 'H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction'
+		</h1>
+		<h2 style="margin-top: 16px; margin-bottom: 16px; border: none; text-align: justify;"> by Eduard Ramon, Gil
+			Triginer, Janna Escur,
+			Albert Pumarola, Jaime Garcia, Xavier Giro-i-Nieto, Francesc Moreno-Noguer </h2>
 
-	<p><em>Paper reproduced by:</em></p>
-	<p>Ioanna Chanopoulou(5360188)&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i.chanopoulou@gmail.com </p>
-	<p>Manos Vretoudakis(4799216)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mvretoudakis@gmail.com</p>
-	<p>Yohan Le Gars(5609577)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; yohan.legars@gmail.com</p>
-	<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+		<p class="by">Paper reproduced by: Yohan Le Gars (5609577 - yohan.legars@gmail.com), Manos Vretoudakis
+			(4799216 - mvretoudakis@gmail.com), Ioanna Chanopoulou (5360188 - i.chanopoulou@gmail.com)</p>
 
-	<div id="toc_container">
-		<h2 class="toc_title">Contents</h2>
+		<!-- <p><em>Paper reproduced by:</em></p>
+		<p>Ioanna Chanopoulou&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp;
+			&nbsp; pppp@gmail.com</p>
+		<p>Manos Vretoudakis&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			mvretoudakis@gmail.com
+		</p>
+		<p>Yohan Le Gars&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|&nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pppp@gmail.com</p>
+		<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp;
+			&nbsp; &nbsp;</p> -->
+
+		<!-- <div id="toc_container">
+			<h2 class="toc_title">Contents</h2>
+			<ul class="toc_list">
+				<li><a href="#intro">1 Introduction</a></li>
+				<li><a href="#methodintheory">2 Method in Theory</a>
+					<ul>
+						<li><a href="#deepsdf">2.1 DeepSDF</a></li>
+						<li><a href="#idr">2.2 IDR</a></li>
+					</ul>
+				</li>
+				<li><a href="#reprh3d">3 Reproduction of H3D-Net</a>
+					<ul>
+						<li><a href="#deepsdfprior">3.1 Reproduction of DeepSDF prior</a></li>
+						<li><a href="#aidedidr">3.2 Reproduction of Prior aided-IDR</a></li>
+					</ul>
+				</li>
+				<li><a href="#conclusions">4 Conclusions</a></li>
+			</ul>
+		</div> -->
+		<h2 id="intro"> Introduction</h2>
+
+		<p>One of the largest fields of interest for deep learning nowadays is regarding the 3D object reconstruction
+			from
+			2D images. From art analysis and restoration to pure visual object description in 3D, deep learning provides
+			endless possibilities to what is attainable. In this project, an attempt is made to reconstruct the paper
+			H3D-Net (presented in the title) which pertains to the 3D head reconstruction from only a limited number of
+			2D images. Due to the intrinsic complexity of this field, this paper picks upon previous work and
+			effectively
+			combines it to achieve high-fidelity head reconstructions. In order to do so, the paper fundamentally
+			touches
+			upon the implicit representation of surfaces for which priors able to describe a general probabilistic shape
+			are available. The key concept of the paper, also referred to as model-based approach, relies on using such
+			work as a prior for the basic 3D head reconstruction and rendering. It is therefore logical to split the
+			work
+			into two basic sections:</p>
+		<ul>
+			<li>
+				The pretrained model describing a general probabilistic shape of the human head (prior) <a
+					href="#Jeong">[1]</a><br />
+			</li>
+			<li>
+				The network that represents the geometry as well as the implicit renderer (implicit differentiable
+				rendering) <a href="#Lior">[2]</a>
+			</li>
+		</ul>
+		<p>Both of these sections are using a certain network as their basis; the DeepSDF paper used as the prior and
+			the
+			IDR for the geometry representation and rendering. These two papers were used as reference throughout the
+			project and will thus be used as the structural basis of this blog too. Initially, the method of both papers
+			will be presented and the reproduction attempts will then be described. This blog also focuses on the
+			technical
+			problems associated with the reproduction, giving insightful information for anyone wishing to replicate the
+			reconstruction.</p>
+
+		<h2 id="methodintheory">Method in Theory</h2>
+		<p>As already mentioned H3D-Net is based on training a prior, namely the already existing DeepSDF <a
+				href="#Jeong">[1]</a> network and using it to initialize the already
+			existing IDR <a href="#Lior">[2]</a> to reduce the needed amount of
+			inputs, leading to
+			the need of only 3 2-D images to get the whole 3-D head representation. Thus, H3D-Net is comprised of two
+			parts:
+			IDR and DeepSDF prior.
+		</p>
+
+		<h3 id="deepsdf"> 1. DeepSDF </h3>
+		<p>The implementation of the DeepSDF network as a prior, being an already established method of representing
+			classes
+			of objects as a learned Signed Distance Function (SDF), is an effective tool to overcome intrinsic
+			difficulties
+			that pertain 3D object reconstruction from limited 2D images and therefore increases the overall efficiency.
+			How
+			does the network function, however, and what inputs does it require in order to come into effect?</p>
+		<p>The key method of the DeepSDF lies on the concept of the signed distance function which can be described as a
+			continuous volumetric field associated with not a single object, but an entire class of objects. The actual
+			surface of the object is then implicitly given from the decision boundary of the function as seen in the
+			figure.
+		</p>
+		<div class="oneimg">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/ExampleSDF.png"
+				alt="Snow" />
+			Figure.1 Example of an SDF representation of a volume the decision boundary of which constitutes the
+			object's surface.
+		</div>
+		<p>DeepSDF utilizes a set of scenes with the associated raw 3D point clouds and, in combination with their SDF
+			values, is used to train a deep neural network that produces the SDF value at the 3D query location.</p>
+		<p>Key parameters of the network:</p>
+		<ul>
+			<li>Eight 512-dimensional layers with ReLU non-linearities</li>
+			<li>Use of latent vector as a form of encoding the desired shape as an input to the network</li>
+			<li>Use of auto-decoder without an encoder.</li>
+		</ul>
+		<div class="oneimg">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/StructureDeepSDF.png"
+				alt="Snow" />
+			Figure.2 Input (left) and Output (right) of the DeepSDF network.
+		</div>
+
+		<h3 id="idr"> 2. IDR </h3>
+		<p> The goal of the Implicit Differentiable Renderer(IDR) is to reproduce the 3D geometry of an object given 2D
+			views - images with noisy camera information.</p>
+		<p>For this purpose, the IDR learns:</p>
+		<p>
+		<ol>
+			<li> for each 3D point its Signed Distance Function to the object shape, which is the geometry
+				representation.
+				Actually the geometry is represented as a zero level-set of a neural network f:
+				<p class="mjax">
+					\begin{equation}
+					S_{\theta}=\{ x \in R^3|f(x;\theta)=0\}
+					\label{eq:VsumA2}
+					\end{equation}
+				</p>
+			</li>
+			<li>the camera parameters</li>
+			<li>a wide set of lighting conditions and materials, using a neural renderer, which actually represents
+				the
+				realistic appearances of the objects</li>
+		</ol>
+		</p>
+		<p>
+			The <b>training data</b> is actually real world 2D images of objects of multiple views
+			(approximately 60 views).
+			These objects are not head representations but various, random objects such as 3D skull objects, 3D
+			rabbit
+			representations and so on so forth. An idea on the used datasets can be seen in <a href="#Jeong">[1]</a>.
+		</p>
+		<p>
+			Thus, the contribution of the neural-network architecture of IDR-system is that it can infer from
+			masked 2D
+			images,
+			<b> 3D geometries, appearances </b> and <b>camera parameters </b>, under which those images were
+			captured.
+			More specifically, by appearances it is meant all the factors that define the surface light field,
+			excluding the
+			geometry, for instance, the scene's lighting conditions.
+		</p>
+		<p>
+			Furthermore, let's give some definitions and their notations. The camera orientation, c and a pixel,
+			p define a
+			viewing direction, v. Then, given the parameters c,p we would like to produce differentiable RGB
+			values. Additionally, we can trace the first
+			intersection point, x, of the viewing ray with the implicit surface Sθ. Finally, the direction of
+			the ray is denoted by t and the normal to the surface vector as n.
+			All of these definitions are visually inspected on Figure.3.
+		<div class="oneimg" style="max-width: 300px;">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
+				alt="Snow">
+			Figure.3 Notation Definitions
+		</div>
+		<p>
+			Nevertheless, we can calculate the intersection point, x as:
+		</p>
+		<p class="mjax">
+			\begin{equation}
+			x = c + tv - \frac{v}{\nabla{f_0} v_0f(c+tv)}
+			\end{equation}
+		</p>
+		<p>
+			In conclusion, the IDR model can be illustrated as follows:
+		</p>
+		<div class="oneimg" style="max-width: 900px;">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDR_architecture.PNG"
+				alt="Snow" />
+			Figure.4 IDR model architecture
+		</div>
+		<p>
+			In Figure.4, we can observe that IDR is comprised of two neural networks, one on the left an one
+			on the right, each of them with a different contribution.
+			The left one is the network that outputs the geometry of the object, by approximating the
+			function f(c+tv) and thus, enabling to represent the
+			intersection point,x and its normal,n as differential functions of the implicit geometry and the
+			camera parameters, due to the definition given in eq.(2).
+			The right one is the rendering network which outputs the RGB values (the color) of each pixel,
+			in order to get the appearances. M is a function of the light
+			field, which is not dependent on the geometry or the cameras, as we can see. Finally, z is a
+			vector encoding specific shapes.
+		</p>
+		<p>
+			In the paper we are reproducing <a href="#H3D-Net">[3]</a>, the used training data are not fulfilling
+			the requirement of being watertight, on the contrary
+			there can be incomplete, raw 3D head point clouds. For this reason, the DeepSDF structure is
+			modified by adding the Eikonal Loss to form the total Loss function, with
+		</p>
+		<p class="mjax">
+			\begin{equation}
+			L_{Eik} = \sum_{x_k \in P_v}(|| \nabla{F_{z,\theta}(x_k)}_x|| - 1)^2
+			\end{equation}
+		</p>
+		<p>
+			where xk is the input and Pv a subset of points taken from a volume containing the scene.
+			The paper in <a href="#H3D-Net">[3]</a> is actually based on <a href="#IGR">[4]</a> for this
+			implementation.
+		</p>
+		<p>
+			Furthermore, H3D-Net is described by the following architecture
+		</p>
+		<div class="oneimg" style="max-width: 1000px;">
+			<img src="https://github.com/IoannaChano/IoannaChano.github.io/blob/main/images/H3DNet.PNG?raw=true"
+				alt="Snow">
+			Figure.5 H3D-Net architecture
+		</div>
+		<p>
+			In Figure.5, we see that the architecture of H3D-Net is highly similar with the one of IDR
+			with the difference that here, the network that learns the
+			surface of the object, namely the geometry, is based on prior information obtained from the
+			DeepSDF model. The right part of IDR is kept the same in the
+			H3D-Net model.
+		</p>
+
+
+		<h2 id="reprh3d"> Reproduction of H3D-Net </h2>
+		<p>In order to reproduce the H3D-Net architecture, one has to, fundamentally, reproduce and combine
+			the
+			IDR model <a href="#Lior">[2]</a> with
+			a pretrained model based on DeepSDF <a href="#Jeong">[1]</a>. </p>
+
+		<h3 id="deepsdfprior">1. Reproduction of DeepSDF prior </h3>
+		<p>
+			Based on the github repository in <a href="#D_SDF_repo">[5]</a> the steps to get DeepSDF are to
+			preprocess the
+			training data, then run the corresponding script
+			to train a model and then, evaluate the results by getting the corresponding SDF
+			representations. Next,
+			these steps
+			are reproduced for a training set we produced
+			and our work methodology is described along with the challenges and issues we encountered on the
+			way.
+		</p>
+
+		<h3> Training Dataset</h3>
+		<p> The original dataset used to train the prior, in the paper, wasn't available for public use -
+			due to
+			confidentiality issues, since the authors are currently
+			collaborating with a company which owns the original data- alternatively, we produced thousands
+			of
+			3D head
+			samples using the FLAME 3D morphable model of heads <a href="#FLAME">[6]</a>.
+			More specifically, we produced almost 10000 of 3D head samples, whose data type is '.obj'. One
+			of
+			these 10000
+			samples can be seen in the following figure.
+
+		<p>One out of 10000 produced 3D head samples:</p>
+
+		<div class="row">
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp.PNG?fbclid=IwAR23U9w5wZGSjZReKUUoa2jE6NoXkeCK5eo_OP7wxz2wbNc4ALq721Wj6W8"
+					alt="Snow">
+				Figure.6 FLAME model 3D head(<i>.obj</i> data type)
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_mesh.png"
+					alt="Forest">
+				Figure.7 Mesh view of the 3D head
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_notClosed.png"
+					alt="Mountains">
+				Figure.8 Open area on the bottom of the 3D head shape
+			</div>
+		</div>
+		<p>As we can see the training data are characterized by:</p>
+		<ul>
+			<li>Non-watertight meshes - incomplete, open area on the bottom of the heads</li>
+			<li>the heads don't have hair</li>
+			<li>the heads don't have shoulders</li>
+		</ul>
+
+		<p>These are some of the contributing factors for a need of special treatment during training the
+			prior.
+			Specifically, for problem 1., the eikonal loss is added in the loss minimization
+			step as already explained. For issues, 2.,3. what is needed to be done is to obtain a first
+			model
+			from the prior
+			with no shoulders or hair and then use the H3D-Net dataset to finetune it. </p>
+
+		<h3> Setting up Dependencies </h3>
+		<p>It is certain that setting up the github repository dependencies has been the most time consuming
+			part of the
+			project
+			leading to much time delay, since one cannot move on to the next task if the dependencies part
+			is
+			not completed.
+			DeepSDF required four main packages to be installed to perform the training. The four packages
+			are
+			eigen,
+			nanoflann, CLI11 and Pangolin. </p>
+		<p>We believe that if one wants to train DeepSDF, he must set up the dependencies with the least
+			hurdle
+			as possible.
+			Hence, the step by step building process of the required packages are displayed below. If you
+			follow the steps
+			in the following order, one should be able to successfully build DeepSDF inside a Deep Learning
+			VM
+			instance of
+			Google Cloud Platform.</p>
+		<h4>Eigen</h4>
+		<ul>
+			<li><code>git clone https://gitlab.com/libeigen/eigen.git</code></li>
+			<li><code>cd eigen</code></li>
+			<li><code> git checkout 3.4</code></li>
+			<li><code>mkdir build && cd build </code></li>
+			<li><code>cmake .. </code></li>
+			<li><code>cmake --build . </code></li>
+			<li><code>sudo make install </code></li>
+		</ul>
+		<h4>Pangolin4</h4>
+		<ul>
+			<li><code>git clone --recursive https://github.com/stevenlovegrove/Pangolin.git</code></li>
+			<li><code>cd pangolin && ./scripts/install_prerequisites.sh recommended</code></li>
+			<li><code> git checkout v0.6</code></li>
+			<li><code>mkdir build && cd build </code></li>
+			<li><code>cmake .. </code></li>
+			<li><code>cmake --build . </code></li>
+			<li><code>sudo make install </code></li>
+		</ul>
+
+		<h4>CLI11</h4>
+		<ul>
+			<li><code>git clone git@github.com:CLIUtils/CLI11.git</code></li>
+			<li><code>cd CLI11</code></li>
+			<li><code>mkdir build && cd build </code></li>
+			<li><code>cmake .. </code></li>
+			<li><code>cmake --build . </code></li>
+			<li><code>sudo make install </code></li>
+		</ul>
+
+		<h4>nanoflann</h4>
+		<ul>
+			<li><code>git clone git@github.com:jlblancoc/nanoflann.git</code></li>
+			<li><code>cd nanoflann</code></li>
+			<li><code>mkdir build && cd build </code></li>
+			<li><code>cmake .. </code></li>
+			<li><code>cmake --build . </code></li>
+			<li><code>sudo make install </code></li>
+		</ul>
+
+		<h4>DeepSDF</h4>
+		<ul>
+			<li><code>git clone git@github.com:eduardramon/DeepSDF.git</code></li>
+			<li><code>cd DeepSDF</code></li>
+			<li><code>git submodule update --init</code></li>
+			<li><code>mkdir build && cd build </code></li>
+			<li><code>cmake .. -DCMAKE_CXX_STANDARD=17 </code></li>
+			<li><code>cmake --build . </code></li>
+			<li><code>sudo make install </code></li>
+		</ul>
+		<p> An additional challenge during setting up the dependencies was the Linux Debian version of the
+			cloud
+			cirtual
+			machine from 10 to 11. Due to the previous version
+			some libraries weren't able to be upgraded. The upgrading of Debian required some rebooting and
+			redefining
+			several settings which took some time to find out.
+			After all these problems were solved we were able to now run the preprocessing, training and
+			evaluation code of
+			DeepSDF <a href="#D_SDF_repo">[5]</a>. </p>
+
+		<h3> Data Pre-processing</h3>
+		<p> The aim of pre-processing the data in the DeepSDF reproduction is the conversion from input of
+			<code>.obj</code>
+			files to <code>.npz</code> zip files.
+		</p>
+		<p> The time delay we ran into due to the difficulties of setting up the dependency libraries on
+			Google
+			cloud didn't
+			allow us to totally implement DeepSDF.
+			Additionally, we spent more time initially, on making IDR work, therefore, towards the deadline
+			we
+			weren't able
+			to actually run the preprocessing for all the
+			10.000 samples which we had produced based on the FLAME model. The reason for that was the time
+			constraint. Just
+			the preprocessing step of the DeepSDF model, takes approximately
+			from 1-5min./sample to complete, multiplied by 10.000 samples gives a minimum of ~160 hours,
+			alternatively
+			almost 6 days(minimum) just for the preprocessing step to be completed. At the time
+			we were able to run DeepSDF on Cloud we didn't have this amount of time. Therefore, we decided
+			to
+			implement a
+			smaller sample size just for illustration of the preprocessed results. We chose a subsample of
+			only
+			30 '.obj'
+			files and sent them through the preprocessing step. Since we didn't want to spend our Google
+			cloud
+			credits on
+			something that we wouldn't eventually use further, we just ran the preprocessing step as
+			follows,
+			based on the given example on <a href="#D_SDF_repo">[5]</a>. </p>
+		<p>
+
+			<code>python preprocess_data.py --data_dir data --source ./FLAME/flame_dataset --name flame_dataset --split examples/splits/train_all.json --skip</code>
+
+		<p> The pre-processing step wasn't usable for our case exactly as provided in the github DeepSDF
+			repo,
+			hence, we
+			created the script named 'organizeFiles.py', which moves automatically the files that need to be
+			pre-processed
+			(.obj)
+			into the appropriate directories and additionally, it outputs the <code>train_all.json</code>
+			file.
+			This
+			<code>.json </code> file is made such that is contains the folder directory for each
+			FLAME <code>.obj</code> file, in analogy to the provided example used in he github repository
+			<code>sv2_sofas_train.json </code>
+		</p>
+
+		<h3> Training the prior </h3>
+		<p> As already explained, there was no available time for running preprocessing and training for
+			thousabnds of
+			samples, thus, there was no training step implemented, although
+			if there would be time it would be perfectly possible as for the preprocessing. Consequently, no
+			evaluation results either exist. </p>
+
+		<h3> Results </h3>
+		<p> After running the preprocessing step as descrbed above for the <code>.obj</code> FLAME samples,
+			we
+			successfully
+			get their corresponding pre-processed <code>.npz</code> version. </p>
+		<div class="oneimg" style="max-width: 700px;">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/Preprocessing%20output.PNG"
+				alt="Snow">
+			Figure.9 DeepSDF pre-processing results
+		</div>
+		<h3>DeepSDF alternative</h3>
+		<p>Instead of using DeepSDF, we tried to set up the implicit geometric regularization (IGR)
+			repository wich
+			uses the eikonal equation in order to be able to learn from nonwatertight meshes. We made a
+			dataloader
+			python file as well
+			as creating a json file to communicate with the data in a similar fashion to DeepSDF.
+			Unfortunately,
+			this last minute endeavor brought no successful results due to some unresolved errors.</p>
+
+		<h3 id="aidedidr">2. Reproduction of Prior aided-IDR </h3>
+		<p>
+			Because of the issues run with DeepSDF, the training of the prior aided IDR has not been
+			performed.
+			Instead, the IDR without prior has been trained for several
+			number of input images like presented in the paper.
+			The reproduction of the IDR model will therefore be presented into two parts. First, we present
+			the
+			acquirement of the dataset and the setting up of the dependecies. Then, we show we
+			reproduction of the IDR model and then, we present how the IDR model can be combined with the
+			DeepSDF
+			prior, in practice, to result in the H3D-Net
+			architecture.
+			Two repositories accessible on github are used for this task, one for the actual training named
+			IDR and
+			one name H3DS for retrieving the 2D images.
+		</p>
+		<h3> Training Dataset</h3>
+		<p> In order to perform the full head reconstruction, a private dataset made by the authors of the
+			paper
+			containing high resolution full head 3D texture
+			scans and 360 &deg images with associated ground truth camera poses and ground truth masks was
+			retrieved. The dataset can be accessed by contacting the authors
+			to be granted a token. The token can then used to unzip the file containing the images and
+			ground truths
+			objects. The zip file can be downloaded on CrisalixSA/h3ds repository.
+			The dataset consist of 10 individual for which 50-60 pictures with their associated masks and
+			camera
+			poses are available. A directory containing a 60 images with their respective masks and camera
+			poses
+			can then be moved to IDR/data directory. </p>
+
+
+		<h3> Setting up Dependencies </h3>
+		<p> We first cloned the IDR repository containing the source code into a folder called
+			<code>IDR</code>:
+		<ul>
+			<li><code>git clone https://github.com/eduardramon/idr.git</code></li>
+		</ul>
+		<p>
+			We then create a conda environment with the required dependencies to be able to use the source
+			code:
+		</p>
+		<ul>
+			<li><code>conda env create -f environment.yml</code></li>
+			<li><code>conda activate idr</code></li>
+		</ul>
+		<p>
+			The source codes inside the repositories are now ready to be run for training and evaluation.
+		</p>
+
+
+		<h3>Training IDR</h3>
+		<p>
+
+			The IDR repository has been tailored for the DTU dataset. Hence, we designed several
+			configuration files
+			defining the architecture models, hyperparameter models, and path to the H3DS sample dir inside
+			IDR.
+			Below is an example of such configuration file. The <code>train_h3dnet_3_views.conf</code> file
+			is
+			placed into <code>IDR/code/confs/</code>.
+		<div class="oneimg" style="max-width: 500px;">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/fileconf.png"
+				alt="Snow">
+			Figure.10 Configuration file for 3 views (3 2D images).
+		</div>
+		The training is then performed in the background for i views with the following commands:
+		<ul>
+			<li><code>cd ./code</code></li>
+			<li><code>nohup python training/exp_runner.py --conf ./confs/train_h3dnet_i_views.conf& </code>
+			</li>
+		</ul>
+
+
+
+
+		<h3>Results</h3>
+		<p>
+
+			The meshed surface is retrieved with the following command:
+		<ul>
+			<li><code>cd ./code</code></li>
+			<li><code>nohup python evaluation/eval.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>
+
+		</ul>
+		<p>
+			The following results correspond to the reproduction of the IDR model using 3, 4, 8 and 16 views as
+			input
+			2-D images, respectively.
+		</p>
+		<div class="oneimg" style="max-width: 900px;">
+			<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/ALL_VIEWS.PNG"
+				alt="Snow" />
+			Figure.11 IDR reproduction results for 3, 4, 8 and 16 input views
+		</div>
+		<p>
+			In order to obtain quantitative results, ICP algorithm can be used to align the reconstructed meshes
+			with
+			the ground truths mesh. Landmarks must be manually
+			placed on the eyes, base and tip of the nose, right and left side of lips of the reconstructed
+			meshes to
+			apply ICP. Afterwards, the Chamfer distance can be computed for all the vertices of the
+			reconstruction.
+			However, due to time constraints, the aforementioned step has not been performed. Hence there is no
+			quantitative results to show.
+		</p>
+
+		<h2 id="conclusions"> Conclusions </h2>
+		<p>
+			Our team eventually, reproduced successfully the IDR model without a prior for multiple sample
+			sizes
+			(3,4, 8 and 16 views). The results we got are similar
+			to the ones in the original paper. Our main conclusions with the challenges we faced and didn't
+			allow us
+			to completely reproduce the H3D-Net are:
+		<ul>
+			<li> Setting up dependencies for the DeepSDF prior coupled with Google Cloud was a major
+				challenge.
+				Virtual Machine compatibility and right versions
+				has been ver time consuming</li>
+			<li> Pre-processing thousand(~10000) of samples for the DeepSDF prior takes ~ 800 hours </li>
+			<li> After training the prior , the model needs to be fine-tuned to account for the missing
+				information
+				for the hair and shoulders</li>
+			<li> IGR repo should have been used instead of DeepSDF to account for non-watertight meshes.
+			</li>
+		</ul>
+		<p>
+			Finally, our main conclusion concerns the importance of a reproducability project. It gives a great
+			insight
+			on the internal steps, not so trivial ones,
+			taken to lead to the published project, gives a deeper understanding of the existing work and one
+			can also
+			evaluate this work and even checkif the results are
+			reliable. Patience during a reproduction that lacks important guidance on setting up dependencies
+			and needed
+			data (e.g. FLAME) is a virtue.
+		</p>
+
+		<h2> Contributions </h2>
+
+		<li> Yohan Le Gars: setting up IDR, DeepSDF, IGR, google cloud platform, training, evaluation, IDR
+			and
+			DeepSDF reproduction sections in blog, poster.</li>
+		<li> Manos Vretoudakis: debugging for DeepSDF, evaluating IDR for 4 views, reporting, poster </li>
+		<li> Ioanna Chanopoulou: dependencies for DeepSDF on Google cloud, running and debugging DeepSDF,
+			producing
+			around 10000 samples with FLAME model, setting up the blog, reporting </li>
+
+
+		<div class="references">
+			<h2> References</h2>
+			<p id="Jeong">
+				[1] Jeong Joon Park, Peter Florence, Julian Straub, Richard Newcombe, and Steven Lovegrove.
+				Deepsdf: Learning continuous signed distance functions for shape representation.In CVPR,
+				2019
+			</p>
+			<p id="Lior">
+				[2] Lior Yariv, Yoni Kasten, Dror Moran, Meirav Galun, Matan Atzmon, Basri Ronen, and Yaron
+				Lipman.
+				Multiview neural surface reconstruction by disentangling geometry and appearance. NeurIPS,
+				33,
+				2020.
+			</p>
+
+			<p id="H3D-Net">
+				[3] Ramon, Eduard and Triginer, Gil and Escur, Janna and Pumarola, Albert and Garcia, Jaime
+				and
+				Giro-i-Nieto, Xavier and Moreno-Noguer, Francesc.
+				H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction.Proceedings of the IEEE/CVF
+				International
+				Conference
+				on Computer Vision, 2021.
+			</p>
+
+			<p id="IGR">
+				[4]Amos Gropp, Lior Yariv, Niv Haim, Matan Atzmon, and Yaron Lipman. Implicit geometric
+				regularization for
+				learning shapes.
+				arXiv preprint arXiv:2002.10099, 2020
+			</p>
+
+			<p id="D_SDF_repo">
+				[5] https://github.com/facebookresearch/DeepSDF
+			</p>
+
+			<p id="FLAME">
+				[6] https://github.com/Rubikplayer/flame-fitting
+			</p>
+
+
+
+		</div>
+	</div>
+
+
+	<div class="contSidebar">
 		<ul class="toc_list">
 			<li><a href="#intro">1 Introduction</a></li>
 			<li><a href="#methodintheory">2 Method in Theory</a>
@@ -198,502 +892,93 @@
 		</ul>
 	</div>
 
-        
-	<h2 id="intro"> Introduction</h2>
-
-	<p>One of the largest fields of interest for deep learning nowadays is regarding the 3D object reconstruction from
-		2D images. From art analysis and restoration to pure visual object description in 3D, deep learning provides
-		endless possibilities to what is attainable. In this project, an attempt is made to reconstruct the paper
-		H3D-Net (presented in the title) which pertains to the 3D head reconstruction from only a limited number of
-		2D images. Due to the intrinsic complexity of this field, this paper picks upon previous work and effectively
-		combines it to achieve high-fidelity head reconstructions. In order to do so, the paper fundamentally touches
-		upon the implicit representation of surfaces for which priors able to describe a general probabilistic shape
-		are available. The key concept of the paper, also referred to as model-based approach, relies on using such
-		work as a prior for the basic 3D head reconstruction and rendering. It is therefore logical to split the work
-		into two basic sections:</p>
-	<p> - The pretrained model describing a general probabilistic shape of the human head (prior) <a href="#Jeong">[1]</a><br />
-		- The network that represents the geometry as well as the implicit renderer (implicit differentiable rendering) <a href="#Lior">[2] </a> </p>
-	<p>Both of these sections are using a certain network as their basis; the DeepSDF paper used as the prior and the
-		IDR for the geometry representation and rendering. These two papers were used as reference throughout the
-		project and will thus be used as the structural basis of this blog too. Initially, the method of both papers
-		will be presented and the reproduction attempts will then be described. This blog also focuses on the technical
-		problems associated with the reproduction, giving insightful information for anyone wishing to replicate the
-		reconstruction.</p>
-
-	<h2 id="methodintheory">Method in Theory</h2>
-	<p>As already mentioned H3D-Net is based on training a prior, namely the already existing DeepSDF <a
-			href="#Jeong">[1]</a> network and using it to initialize the already
-		existing IDR <a href="#Lior">[2] </a> to reduce the needed amount of
-		inputs, leading to
-		the need of only 3 2-D images to get the whole 3-D head representation. Thus, H3D-Net is comprised of two parts:
-		IDR and DeepSDF prior.
-	</p>
-
-	<h3 id="deepsdf"> 1. DeepSDF </h3>
-	<p>The implementation of the DeepSDF network as a prior, being an already established method of representing classes
-		of objects as a learned Signed Distance Function (SDF), is an effective tool to overcome intrinsic difficulties
-		that pertain 3D object reconstruction from limited 2D images and therefore increases the overall efficiency. How
-		does the network function, however, and what inputs does it require in order to come into effect?</p>
-	<p>The key method of the DeepSDF lies on the concept of the signed distance function which can be described as a
-		continuous volumetric field associated with not a single object, but an entire class of objects. The actual
-		surface of the object is then implicitly given from the decision boundary of the function as seen in the figure.
-	</p>
-	<div class="oneimg">
-		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/ExampleSDF.png"
-			alt="Snow" />
-		Figure.1 Example of an SDF representation of a volume the decision boundary of which constitutes the
-		object's surface.
-	</div>
-	<p>DeepSDF utilizes a set of scenes with the associated raw 3D point clouds and, in combination with their SDF
-		values, is used to train a deep neural network that produces the SDF value at the 3D query location.</p>
-	<p>Key parameters of the network:</p>
-	<ul>
-		<li>Eight 512-dimensional layers with ReLU non-linearities</li>
-		<li>Use of latent vector as a form of encoding the desired shape as an input to the network</li>
-		<li>Use of auto-decoder without an encoder.</li>
-	</ul>
-	<div class="oneimg">
-		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/StructureDeepSDF.png"
-			alt="Snow" />
-		Figure.2 Input (left) and Output (right) of the DeepSDF network.
-	</div>
-
-	<h3 id="idr"> 2. IDR </h3>
-	<p> The goal of the Implicit Differentiable Renderer(IDR) is to reproduce the 3D geometry of an object given 2D
-		views - images with noisy camera information.</p>
-	<p>For this purpose, the IDR learns:</p>
-	<p>
-	<ol>
-		<li> for each 3D point its Signed Distance Function to the object shape, which is the geometry
-			represenation.
-			Actually the geometry is represented as a zero level-set of a neural network f:
-			<p class="mjax">
-				\begin{equation}
-				S_{\theta}=\{ x \in R^3|f(x;\theta)=0\}
-				\label{eq:VsumA2}
-				\end{equation}
-			</p>
-		</li>
-		<li>the camera parameters</li>
-		<li>a wide set of lighting conditions and materials, usingn a neural renderer, which actually represents
-			the
-			realistic appearances of the objects</li>
-	</ol>
-	</p>
-	<p>
-		The <b>training data</b> is actually real world 2D images of objects of multiple views
-		(approximately 60 views).
-		These objects are not head representations but various, random objects such as 3D skull objects, 3D
-		rabbit
-		representations and so on so forth. An idea on the used datasets can be seen in <a href="#Jeong">[1]</a>.
-	</p>
-	<p>
-		Thus, the contribution of the neural-network architecture of IDR-system is that it can infer from
-		masked 2D
-		images,
-		<b> 3D geometries, appearances </b> and <b>camera parameters </b>, under which those images were
-		captured.
-		More specifically, by appearances it is meant all the factors that define the surface light field,
-		excluding the
-		geometry, for instance, the scene's lighting conditions.
-	</p>
-	<p>
-		Furthermore, let's give some definitions and their notations. The camera orientation, c and a pixel,
-		p define a
-		viewing direction, v. Then, given the parameters c,p we would like to produce differentiable RGB
-		values. Additionally, we can trace the first
-		intersection point, x, of the viewing ray with the implicit surface Sθ. Finally, the direction of
-		the ray is denoted by t and the normal to the surface vector as n.
-		All of these definitions are visually inspected on Figure.3.
-	<div class="oneimg" style="max-width: 300px;">
-		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDRmethod.PNG"
-			alt="Snow">
-		Figure.3 Notation Definitions
-	</div>
-	Nevertheless, we can calculate the intersection point, x as:
-	<p class="mjax">
-		\begin{equation}
-		x = c + tv - \frac{v}{\nabla{f_0} v_0f(c+tv)}
-		\end{equation}
-	</p>
-	In conclusion, the IDR model can be illustrated as follows:
-	<div class="oneimg" style="max-width: 900px;">
-		<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/IDR_architecture.PNG"
-			alt="Snow" />
-		Figure.4 IDR model architecture
-	</div>
-	In Figure.4, we can observe that IDR is comprised of two neural networks, one on the left an one
-	on the right, each of them with a different contribution.
-	The left one is the network that outputs the geometry of the object, by approximating the
-	function f(c+tv) and thus, enabling to represent the
-	intersection point,x and its normal,n as differential functions of the implicit geometry and the
-	camera parameters, due to the definition given in eq.(2).
-	The right one is the rendering network which outputs the RGB values (the colour) of each pixel,
-	in order to get the apperances. M is a function of the light
-	field, which is not dependent on the geometry or the cameras, as we can see. Finally, z is a
-	vector encoding specific shapes.
-
-	</p>
-	In the paper we are reproducing <ahref="#H3D-Net">[3] </a>, the used training data are not fulfilling
-		the requirement of being watertight, on the contrary
-		there can be incomplete, raw 3D head point clouds. For this reason, the DeepSDF structure is
-		modified by adding the Eikonal Loss to form the total Loss function, with
-		<p class="mjax">
-			\begin{equation}
-			L_{Eik} = \sum_{x_k \in P_v}(|| \nabla{F_{z,\theta}(x_k)}_x|| - 1)^2
-			\end{equation}
-		</p>
-		where xk is the input and Pv a suset of points taken from a volume containing the scene.
-
-		The paper in <ahref="#H3D-Net">[3] </a> is actually based on <ahref="#IGR">[4] </a> for this
-				implementation.
-
-				Furthermore, H3D-Net is described by the following architecture
-				<div class="oneimg" style="max-width: 1000px;">
-					<img src="https://github.com/IoannaChano/IoannaChano.github.io/blob/main/images/H3DNet.PNG?raw=true"
-						alt="Snow">
-					Figure.5 H3D-Net architecture
-				</div>
-				In Figure.5, we see that the architecture of H3D-Net is highly similar with the one of IDR
-				with the difference that here, the network that learns the
-				surface of the object, namely the geometry, is based on prior information obtained from the
-				DeepSDF model. The right part of IDR is kept the same in the
-				H3D-Net model.
-				</p>
-
-
-				<h2 id="reprh3d"> Reproduction of H3D-Net </h2>
-				<p>In order to reproduce the H3D-Net architecture, one has to, fundamentally, reproduce and combine the
-					IDR model <a href="#Lior">[2] </a> with
-					a pretrained model based on DeepSDF <a href="#Jeong">[1] </a>. </p>
-
-				<h2 id="deepsdfprior">1. Reproduction of DeepSDF prior </h2>
-<p>
-				Based on the github repository in <a href="#D_SDF_repo">[5]</a> the steps to get DeepSDF are to
-				preprocess the
-				training data, then run the corresponding script
-				to train a model and then, evaluate the results by getting the corresponding SDF representations. Next,
-				these steps
-				are reproduced for a training set we produced
-				and our work methodology is described along with the challenges and issues we encountered on the way.
-</p>
-
-				<h3> Training Dataset</h3>
-				<p> The original dataset used to train the prior, in the paper, wasn't available for public use - due to
-					confidentiality issues, since the authors are currently
-					collaborating with a company which owns the original data- alternatively, we produced thousands of
-					3D head
-					samples using the FLAME 3D morphable model of heads <a href="#FLAME">[6]</a>.
-					More specifically, we produced almost 10000 of 3D head samples, whose data type is '.obj'. One of
-					these 10000
-					samples can be seen in the following figure.
-
-				<p>One out of 10000 produced 3D head samples:</p>
-
-				<div class="row">
-					<div class="column">
-						<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp.PNG?fbclid=IwAR23U9w5wZGSjZReKUUoa2jE6NoXkeCK5eo_OP7wxz2wbNc4ALq721Wj6W8"
-							alt="Snow">
-						Figure.6 FLAME model 3D head(<i>.obj</i> data type)
-					</div>
-					<div class="column">
-						<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_mesh.png"
-							alt="Forest">
-						Figure.7 Mesh view of the 3D head
-					</div>
-					<div class="column">
-						<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/FLAME_sample_exmp_notClosed.png"
-							alt="Mountains">
-						Figure.8 Open area on the bottom of the 3D head shape
-					</div>
-				</div>
-				<p>As we can see the training data are characterized by:</p>
-				<ul>
-					<li>Non-watertight meshes - incomlpete, open area on the bottom of the heads</li>
-					<li>the heads don't have hair</li>
-					<li>the heads don't have shoulders</li>
-				</ul>
-
-				<p>These are some of the contributing factors for a need of special treatment during training the prior.
-					Specifically, for problem 1., the eikonal loss is added in the loss minimization
-					step as already explained. For issues, 2.,3. what is needed to be done is to obtain a first model
-					from the prior
-					with no shoulders or hair and then use the H3D-Net dataset to finetune it. </p>
-
-				<h3> Setting up Dependencies </h3>
-				<p>It is certain that setting up the github repository dependencies has been the most time consuming
-					part of the
-					project
-					leading to much time delay, since one cannot move on to the next task if the dependencies part is
-					not completed.
-					DeepSDF required four main packages to be installed to perform the training. The four packages are
-					eigen,
-					nanoflann, CLI11 and Pangolin. </p>
-				<p>We believe that if one wants to train DeepSDF, he must set up the dependecies with the least hurdle
-					as possible.
-					Hence, the step by step building process of the requiered packages are displayed below. If you
-					follow the steps
-					in the following order, one should be able to successfully build DeepSDF inside a Deep Learning VM
-					instance of
-					Google Cloud Platform.</p>
-				<h4>Eigen</h4>
-				<ul>
-					<li><code>git clone https://gitlab.com/libeigen/eigen.git</code></li>
-					<li><code>cd eigen</code></li>
-					<li><code> git checkout 3.4</code></li>
-					<li><code>mkdir build && cd build </code></li>
-					<li><code>cmake .. </code></li>
-					<li><code>cmake --build . </code></li>
-					<li><code>sudo make install </code></li>
-				</ul>
-				<h4>Pangolin4</h4>
-				<ul>
-					<li><code>git clone --recursive https://github.com/stevenlovegrove/Pangolin.git</code></li>
-					<li><code>cd pangolin && ./scripts/install_prerequisites.sh recommended</code></li>
-					<li><code> git checkout v0.6</code></li>
-					<li><code>mkdir build && cd build </code></li>
-					<li><code>cmake .. </code></li>
-					<li><code>cmake --build . </code></li>
-					<li><code>sudo make install </code></li>
-				</ul>
-
-				<h4>CLI11</h4>
-				<ul>
-					<li><code>git clone git@github.com:CLIUtils/CLI11.git</code></li>
-					<li><code>cd CLI11</code></li>
-					<li><code>mkdir build && cd build </code></li>
-					<li><code>cmake .. </code></li>
-					<li><code>cmake --build . </code></li>
-					<li><code>sudo make install </code></li>
-				</ul>
-
-				<h4>nanoflann</h4>
-				<ul>
-					<li><code>git clone git@github.com:jlblancoc/nanoflann.git</code></li>
-					<li><code>cd nanoflann</code></li>
-					<li><code>mkdir build && cd build </code></li>
-					<li><code>cmake .. </code></li>
-					<li><code>cmake --build . </code></li>
-					<li><code>sudo make install </code></li>
-				</ul>
-
-				<h4>DeepSDF</h4>
-				<ul>
-					<li><code>git clone git@github.com:eduardramon/DeepSDF.git</code></li>
-					<li><code>cd DeepSDF</code></li>
-					<li><code>git submodule update --init</code></li>
-					<li><code>mkdir build && cd build </code></li>
-					<li><code>cmake .. -DCMAKE_CXX_STANDARD=17 </code></li>
-					<li><code>cmake --build . </code></li>
-					<li><code>sudo make install </code></li>
-				</ul>
-				<p> An additional challenge during setting up the dependencies was the Linux Debian version of the cloud
-					cirtual
-					machine from 10 to 11. Due to the previous version
-					some libraries weren't able to be upgraded. The upgrading of Debian required some rebooting and
-					redefining
-					several settings which took some time to find out.
-					After all these problems were solved we were able to now run the preprocessing, training and
-					evaluation code of
-					DeepSDF <a href="#D_SDF_repo">[5]</a>. </p>
-
-				<h3> Data Pre-processing</h3>
-				<p> The aim of pre-processing the data in the DeepSDF reproduction is the conversion from input of <code>.obj</code>
-				     files to <code>.npz</code> zip files.</p>
-				<p> The time delay we ran into due to the difficulties of setting up the dependency libraries on Google
-					cloud didn't
-					allow us to totally implement DeepSDF.
-					Additionally, we spent more time initially, on making IDR work, therefore, towards the deadline we
-					weren't able
-					to actually run the preprocessing for all the
-					10.000 samples which we had produced based on the FLAME model. The reason for that was the time
-					constraint. Just
-					the preprocessing step of the DeepSDF model, takes approximately
-					from 1-5min./sample to complete, multiplied by 10.000 samples gives a minimum of ~160 hours,
-					alternatively
-					almost 6 days(minimum) just for the preprocessing step to be completed. At the time
-					we were able to run DeepSDF on Cloud we didn't have this amount of time. Therefore, we decided to
-					implement a
-					smaller sample size just for illustration of the preprocessed results. We chose a subsample of only
-					30 '.obj'
-					files and sent them through the preprocessing step. Since we didn't want to spend our Google cloud
-					credits on
-					something that we wouldn't eventually use further, we just ran the preprocessing step as follows,
-					based on the given example on <a href="#D_SDF_repo">[5]</a>. </p>
-				<p>
-
-					<code>python preprocess_data.py --data_dir data --source ./FLAME/flame_dataset --name flame_dataset --split examples/splits/train_all.json --skip</code>
-
-				<p> The pre-processing step wasn't usable for our case exactly as provided in the github DeepSDF repo,
-					hence, we
-					created the script named 'organizeFiles.py', which moves automatically the files that need to be
-					pre-processed
-					(.obj)
-					into the appropriate directories and additionally, it outputs the <code>train_all.json</code> file.
-					This
-					<code>.json </code> file is made such that is contains the folder directory for each
-					FLAME <code>.obj</code> file, in analogy to the provided example used in he github repository
-					<code>sv2_sofas_train.json </code>
-				</p>
-
-				<h3> Training the prior </h3>
-				<p> As already explained, there was no available time for running preprocessing and training for
-					thousabnds of
-					samples, thus, there was no training step implemented, although
-					if there would be time it would be perfectly possible as for the preprocessing. Consequently, no
-					evaluation results either exist. </p>
-
-				<h3> Results </h3>
-				<p> After running the preprocessing step as descrbed above for the <code>.obj</code> FLAME samples, we
-					successfully
-					get their corresponding pre-processed <code>.npz</code> version. </p>
-				<div class="oneimg" style="max-width: 700px;">
-					<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/Preprocessing%20output.PNG"
-						alt="Snow">
-					Figure.9 DeepSDF pre-processing results
-				</div>
-<h3>DeepSDF alternative</h3>
-	<p>Instead of using DeepSDF, we tried to set up the implicit geometric regularization (IGR) repository wich uses the eikonal equation in order to be able to learn from nonwatertight meshes. We made a dataloader python file as well 
-        as creating a json file to communicate with the data in a similar fashion to DeepSDF. Unfortunately, this last minute endeavor brought no successful results due to some unresolved errors.</p>
-
-				<h2 id="aidedidr">2. Reproduction of Prior aided-IDR </h2>
-<p>
-                                Because of the issues run with DeepSDF, the training of the prior aided IDR has not been performed. Instead, the IDR without prior has been trained for several
-                                number of input images like presented in the paper.
-				The reproduction of the IDR model will therefore be presented into two parts. First, we present the acquirement of the dataset and the setting up of the dependecies. Then, we show we 
-				reproduction of the IDR model and then, we present how the IDR model can be combined with the DeepSDF prior, in practice, to result in the H3D-Net
-				architecture.
-                                Two repositories accessible on github are used for this task, one for the actual training named IDR and one name H3DS for retrieving the 2D images.
-</p> 
-				<h3> Training Dataset</h3>
-                                <p> In order to perform the full head reconstruction, a private dataset made by the authors of the paper containing high resolution full head 3D texture 
-				    scans and 360 &deg images with associated ground truth camera poses and ground truth masks was retrieved. The dataset can be accessed by contacting the authors
-				    to be granted a token. The token can then used to unzip the file containing the images and ground truths objects. The zip file can be downloaded on CrisalixSA/h3ds repository.
-				    The dataset consist of 10 individual for which 50-60 pictures with their associated masks and camera poses are available. A directory containing a 60 images with their respective masks and camera poses 
-				    can then be moved to IDR/data directory. </p>
-				    
-
-				<h3> Setting up Dependencies </h3>
-                                <p> We first cloned the IDR repository containing the source code into a folder called <code>IDR</code>:
-                                     <ul>
-					<li><code>git clone https://github.com/eduardramon/idr.git</code></li>
-                                    </ul>
-                                    We then create a conda environment with the requiered dependencies to be able to use the source code:
-				     <ul>
-					<li><code>conda env create -f environment.yml</code></li>
-					<li><code>conda activate idr</code></li>
-                                    </ul>
-                                 The source codes inside the repositories are now ready to be run for training and evaluation.</p>
-
-
-				<h3>Training IDR</h3>
-					<p>
-					
-				The IDR repository has been tailored for the DTU dataset. Hence, we designed several configuration files defining the architecture models, hyperparameter models, and path to the H3DS sample dir inside IDR.
-				Below is an example of such configuration file. The <code>train_h3dnet_3_views.conf</code> file is placed into <code>IDR/code/confs/</code>.
-				<div class="oneimg" style="max-width: 300px;">
-				<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/IDR/fileconf.png"
-					alt="Snow">
-				Figure.10 Configuration file for 3 views (3 2D images).
-			        </div>	
-				The training is then performed in the background for i views with the following commands:
-				 <ul>
-					<li><code>cd ./code</code></li>
-					<li><code>nohup python training/exp_runner.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>	
-                                 </ul>
-					
-
-				
-
-				<h3>Results</h3>
-<p>
-					
-				The meshed surface is retrieved with the following command:
-				<ul>
-					<li><code>cd ./code</code></li>
-					<li><code>nohup python evaluation/eval.py --conf ./confs/train_h3dnet_i_views.conf& </code></li>
-					
-                                </ul>
-				The following results correspond to the reproduction of the IDR model using 3, 4, 8 and 16 views as input
-				2-D images, respectively.
-				<div class="oneimg" style="max-width: 900px;">
-					<img src="https://raw.githubusercontent.com/IoannaChano/IoannaChano.github.io/main/images/ALL_VIEWS.PNG"
-						alt="Snow" />
-					Figure.11 IDR reproduction results for 3, 4, 8 and 16 input views
-				</div>
-				In order to obtain quantitative results, ICP algorithm can be used to align the reconstructed meshes with the ground truths mesh. Landmarks must be manually
-                                placed on the eyes, base and tip of the nose, right and left side of lips of the reconstructed meshes to apply ICP. Afterwards, the Chamfer distance can be computed for all the vertices of the reconstruction. 
-                                However, due to time constraints, the aforementioned step has not been performed. Hence there is no quantitative results to show.
-
-				
-      
-</p>
-        <h2 id="conclusions"> Conclusions </h2>
-<p>
-
-
-Our team eventually, reproduced successfully the IDR model without a prior for multiple sample sizes (3,4, 8 and 16 views). The results we got are similar
-to the ones in the original paper. Our main conclusions with the challenges we faced and didn't allow us to completely reproduce the H3D-Net are: 
-<ul>
-	<li> Setting up dependencies for the DeepSDF prior coupled with Google Cloud was a major challenge. Virtual Machine compatibility and right versions	
-	 has been ver time consuming</li>
-	<li> Pre-processing thousand(~10000) of samples for the DeepSDF prior takes ~ 800 hours </li>
-	<li> After training the prior , the model needs to be fine-tuned to account for the missing information for the hair and shoulders</li>
-	<li> IGR repo should have been used instead of DeepSDF to account for non-watertight meshes.</li>
-</ul>
-Finally, our main conclusion concerns the importance of a reproducability project. It gives a great insight on the internal steps, not so trivial ones, 
-taken to lead to the published project, gives a deeper understanding of the existing work and one can also evaluate this work and even checkif the results are 
-reliable. Patience during a reproduction that lacks important guidance on setting up dependencies and needed data (e.g. FLAME) is a virtue.
-</p>
-	
-<h2> Contributions </h2>
-
-<li> Yohan Le Gars: setting up IDR, DeepSDF, IGR, google cloud platform, training, evaluation, IDR and DeepSDF reproduction sections in blog, poster.</li>
-<li> Manos Vretoudakis: debugging for DeepSDF, evaluating IDR for 4 views, reporting, poster </li>
-<li> Ioanna Chanopoulou:  dependencies for DeepSDF on Google cloud, running and debugging DeepSDF, producing around 10000 samples with FLAME model, setting up the blog, reporting </li>
-
-
-				<div class="references">
-					<h2> References</h2>
-					<p id="Jeong">
-						[1] Jeong Joon Park, Peter Florence, Julian Straub, Richard Newcombe, and Steven Lovegrove.
-						Deepsdf: Learning continuous signed distance functions for shape representation.In CVPR, 2019
-					</p>
-					<p id="Lior">
-						[2] Lior Yariv, Yoni Kasten, Dror Moran, Meirav Galun, Matan Atzmon, Basri Ronen, and Yaron
-						Lipman.
-						Multiview neural surface reconstruction by disentangling geometry and appearance. NeurIPS, 33,
-						2020.
-					</p>
-
-					<p id="H3D-Net">
-						[3] Ramon, Eduard and Triginer, Gil and Escur, Janna and Pumarola, Albert and Garcia, Jaime and
-						Giro-i-Nieto, Xavier and Moreno-Noguer, Francesc.
-						H3D-Net: Few-Shot High-Fidelity 3D Head Reconstruction.Proceedings of the IEEE/CVF International
-						Conference
-						on Computer Vision, 2021.
-					</p>
-
-					<p id="IGR">
-						[4]Amos Gropp, Lior Yariv, Niv Haim, Matan Atzmon, and Yaron Lipman. Implicit geometric
-						regularization for
-						learning shapes.
-						arXiv preprint arXiv:2002.10099, 2020
-					</p>
-
-					<p id="D_SDF_repo">
-						[5] https://github.com/facebookresearch/DeepSDF
-					</p>
-
-					<p id="FLAME">
-						[6] https://github.com/Rubikplayer/flame-fitting
-					</p>
-
-
-
-				</div>
-					
 
 </body>
+
+<script>
+	function sleep(miliseconds) {
+		var currentTime = new Date().getTime();
+
+		while (currentTime + miliseconds >= new Date().getTime()) {
+		}
+	}
+
+	window.addEventListener('DOMContentLoaded', function (e) {
+		var sidebar = document.getElementsByClassName("contSidebar")[0];
+		var body = document.body;
+		var paper = document.getElementsByClassName("paper")[0];
+
+		var sidespace = (body.clientWidth - paper.clientWidth + 128) / 2;
+
+		if (sidespace < 158) {
+			sidebar.style.maxWidth = (sidespace - 10 - 16 - 8).toString() + "px";
+			sidebar.style.left = "calc(50% - " + ((paper.clientWidth - 128) / 2 + sidespace - 8).toString() + "px)";
+			sidebar
+		}
+		else {
+			sidebar.style.maxWidth = "120px";
+			sidebar.style.left = "calc(50% - 532px)"
+		}
+
+		sidebar.addEventListener('mouseover', function () {
+			var sidebar = document.getElementsByClassName("contSidebar")[0];
+
+			sidebar.style.cssText = "max-width:max-width; left: " + sidebar.style.left + "; top: " + sidebar.style.top + ";";
+		})
+
+
+		sidebar.addEventListener('mouseleave', function () {
+			var sidebar = document.getElementsByClassName("contSidebar")[0];
+			var body = document.body;
+			var paper = document.getElementsByClassName("paper")[0];
+
+			var sidespace = (body.clientWidth - paper.clientWidth + 128) / 2;
+
+			if (sidespace < 158) {
+				sidebar.style.maxWidth = (sidespace - 10 - 16 - 8).toString() + "px";
+				sidebar.style.left = "calc(50% - " + ((paper.clientWidth - 128) / 2 + sidespace - 8).toString() + "px)";
+				sidebar
+			}
+			else {
+				sidebar.style.cssText = "max-width:120px; left: " + sidebar.style.left + "; top: " + sidebar.style.top + ";";
+				sidebar.style.left = "calc(50% - 532px)"
+			}
+
+
+		})
+	});
+
+	document.addEventListener('scroll', function (e) {
+		var sidebar = document.getElementsByClassName("contSidebar")[0];
+
+		sidebar.style.transition = "all 0.4s";
+		if (window.scrollY > 0) {
+			sidebar.style.top = "calc(50% - " + (sidebar.offsetHeight / 2).toString() + "px)";
+		}
+		else sidebar.style.top = "36px";
+	});
+
+	window.addEventListener('resize', function (e) {
+		var sidebar = document.getElementsByClassName("contSidebar")[0];
+		var body = document.body;
+		var paper = document.getElementsByClassName("paper")[0];
+		var sidespace = (body.clientWidth - paper.clientWidth + 128) / 2;
+
+		sidebar.style.transition = "all 0s";
+
+		if (sidespace < 158) {
+			sidebar.style.maxWidth = (sidespace - 10 - 16 - 8).toString() + "px";
+			sidebar.style.left = "calc(50% - " + ((paper.clientWidth - 128) / 2 + sidespace - 8).toString() + "px)";
+			sidebar
+		}
+		else {
+			sidebar.style.maxWidth = "120px";
+			sidebar.style.left = "calc(50% - 532px)"
+		}
+
+		sleep(33);
+	});
+
+</script>
 
 </html>
